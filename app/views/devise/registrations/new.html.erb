@@ -66,13 +66,7 @@
                       </div>
 
                       <div class="form-check d-flex justify-content-center mb-5">
-                        <input
-                          class="form-check-input me-2"
-                          type="checkbox"
-                          value=""
-                          id="signup-terms"
-                          name="terms_of_service"
-                          />
+                        <%= f.check_box :terms_of_service, class:"form-check-input me-2" %>
                         <label class="form-check-label" for="signup-terms">
                           I agree with all statements in <%= link_to "Terms of Service", terms_path %>
                         </label>
