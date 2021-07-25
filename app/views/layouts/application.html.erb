@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TemplateApp</title>
+    <title>Job Works</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,7 +13,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <!-- Stripe -->
-    <%= tag :meta, name: "stripe-public-key", content: Rails.application.credentials.dig(:STRIPE_PUBLISHABLE_KEY) %>
+    <%= tag :meta, name: "stripe-public-key", content: Rails.application.credentials.dig(:stripe, :access_key) %>
   </head>
 
   <body>

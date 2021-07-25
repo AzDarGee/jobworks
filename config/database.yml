@@ -11,9 +11,6 @@ development:
   password:
   database: jobworks-dev
 
-test:
-  <<: *default
-
 production:
   <<: *default
   host: <%= Rails.application.credentials.dig(:TEMPLATE_APP_HOST) %>

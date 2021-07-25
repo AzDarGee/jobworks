@@ -17,6 +17,7 @@ gem 'stripe'
 gem 'gon'
 gem 'aws-sdk-s3'
 gem 'cocoon'
+gem 'trix'
 
 
 group :development, :test do
