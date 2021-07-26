@@ -16,3 +16,5 @@ ActiveStorage.start()
 // Import User JS
 import '../src/bootstrap'
 import '@fortawesome/fontawesome-free/css/all'
+import 'mdb-ui-kit'
+

@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :jobs
+
   # Profile Pic
   has_one_attached :image, service: :amazon
 

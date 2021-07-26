@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to "Home", root_path, class: "nav-link active", "aria-current" => "page" %>
+          <%= link_to "Jobs", jobs_path, class: "nav-link active", "aria-current" => "page" %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Map</a>
@@ -16,6 +16,9 @@
 
       <ul class="navbar-nav">
         <% if current_user %>
+          <li class="nav-item">
+            <%= link_to "+ Post Job", new_job_path, class: "nav-link post-job-btn", "aria-current" => "page" %>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= current_user.email %>
@@ -27,10 +30,10 @@
               <li>
                 <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               </li>
+              <li>
+                <%= link_to 'Terms of Service', terms_path, class: 'dropdown-item' %>
+              </li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Terms of Service', terms_path, class: 'nav-link' %>
           </li>
         <% else %>
           <li class="nav-item">
