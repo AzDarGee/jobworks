@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+
   root 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   get 'terms', to: 'pages#terms'
+
+  resources :jobs
+  devise_for :users
 end
