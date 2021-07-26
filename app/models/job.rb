@@ -1,4 +1,5 @@
 class Job < ApplicationRecord
+  serialize :tags
 
   has_many_attached :images, service: :amazon
   has_rich_text :description
@@ -17,4 +18,27 @@ class Job < ApplicationRecord
     "$150,000 - $200,000",
     "$200,000 +"
   ]
+
+  def coordinates
+    [longitude, latitude]
+  end
+
+  def to_feature
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": coordinates
+      },
+      "properties": {
+        "job_id": id,
+        "name": title,
+        "info_window": ApplicationController.new.render_to_string(
+          partial: "jobs/infowindow",
+          locals: { job: self }
+        )
+      }
+    }
+  end
+
 end

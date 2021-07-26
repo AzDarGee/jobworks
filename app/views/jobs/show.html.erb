@@ -44,7 +44,8 @@
         <div class="card-text">
 
           <p>
-            <h1><%= @job.title %></h1>
+            <h1><%= @job.job_author %></h1>
+            <h4><%= @job.title %></h4>
             <%= "Remote" if @job.remote_ok %> | <em><%= link_to "Website", @job.url, taget: "_blank" %></em>
           </p>
           <p>
@@ -56,7 +57,7 @@
           </p>
 
           <p>
-            <h4><%= @job.job_author %></h4>
+
           </p>
 
           <p>

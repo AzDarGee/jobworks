@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_26_055359) do
+ActiveRecord::Schema.define(version: 2021_07_26_074317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,20 +53,39 @@ ActiveRecord::Schema.define(version: 2021_07_26_055359) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.boolean "isPublic"
+    t.text "website"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_companies_on_user_id"
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "url"
+    t.text "url"
     t.string "job_type"
     t.string "location"
     t.string "job_author"
     t.boolean "remote_ok"
-    t.string "apply_url"
+    t.text "apply_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.float "latitude"
     t.float "longitude"
+    t.text "tags", default: [], array: true
+    t.string "salary_range"
+    t.datetime "start_date"
+    t.string "industry"
+    t.integer "company_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -89,6 +108,10 @@ ActiveRecord::Schema.define(version: 2021_07_26_055359) do
     t.string "role"
     t.boolean "is_admin"
     t.boolean "terms_of_service"
+    t.text "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.jsonb "social_media_links"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

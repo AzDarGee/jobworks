@@ -22,7 +22,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if ((@job.save) && (@job.user.role == "Employer"))
-        format.html { redirect_to job_path(@job), notice: "Job was successfully created." }
+        format.html { render :show, notice: "Job was successfully created." }
         format.json { render :show, status: :created, location: @job }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +65,7 @@ class JobsController < ApplicationController
                                   :job_author,
                                   :remote_ok,
                                   :apply_url,
+                                  :salary_ranges,
                                   images: [])
     end
 end

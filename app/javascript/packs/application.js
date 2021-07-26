@@ -17,7 +17,11 @@ ActiveStorage.start()
 import '../src/bootstrap'
 import '@fortawesome/fontawesome-free/css/all'
 import 'mdb-ui-kit'
-
+import { initMapbox } from '../src/init-mapbox';
 
 require("trix")
 require("@rails/actiontext")
+
+document.addEventListener('turbolinks:load', () => {
+    initMapbox();
+});

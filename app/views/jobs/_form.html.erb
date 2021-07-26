@@ -13,22 +13,29 @@
             <div class="col">
               <!-- Name input -->
               <div class="form-outline">
-                <%= form.text_field :title, class: "form-control" %>
+                <%= form.text_field :title, class: "form-control", required: true %>
                 <%= form.label :title, class: "form-label" %>
               </div>
             </div>
             <div class="col">
               <!-- Email input -->
               <div class="form-outline">
-                <%= form.text_field :url, class: "form-control" %>
-                <%= form.label :url, class: "form-label" %>
+                <%= form.text_field :url, class: "form-control", required: true %>
+                <%= form.label :url, "Website", class: "form-label" %>
               </div>
             </div>
             <div class="col">
               <div class="form-outline">
-                <%= form.text_field :job_type, class: "form-control" %>
+                <%= form.select( :job_type, options_for_select(Job::JOB_TYPES), { :prompt => true }, required: true, class: "form-control" ) %>
                 <%= form.label :job_type, class: "form-label" %>
               </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <%= form.select( :salary_range, options_for_select(Job::SALARY_RANGES), { :prompt => true }, required: true, class: "form-control" ) %>
+              <%= form.label :salary_range, class: "form-label" %>
             </div>
           </div>
 
@@ -38,7 +45,7 @@
             <div class="col">
               <!-- Name input -->
               <div class="form-outline">
-                <%= form.rich_text_area :description, class: "form-control customized-min-height", input_html: { rows: "10" } %>
+                <%= form.rich_text_area :description, class: "form-control customized-min-height", input_html: { rows: "10" }, required: true %>
                 <%= form.label :description, class: "form-label" %>
               </div>
             </div>
@@ -52,17 +59,17 @@
               <%= form.label :images, class: "form-label" %>
             </div>
             <div class="col">
-              <%= form.text_field :location, class: "form-control" %>
+              <%= form.text_field :location, class: "form-control", required: true %>
               <%= form.label :location, class: "form-label" %>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <%= form.text_field :apply_url, class: "form-control" %>
+              <%= form.text_field :apply_url, class: "form-control", required: true %>
               <%= form.label :apply_url, class: "form-label" %>
             </div>
             <div class="col">
-              <%= form.text_field :job_author, class: "form-control" %>
+              <%= form.text_field :job_author, class: "form-control", required: true %>
               <%= form.label :job_author, "Company Name", class: "form-label" %>
             </div>
           </div>

@@ -1,0 +1,4 @@
+<div id="map"
+     data-jobs="<%= @geojson.to_json %>"
+     data-mapbox-api-key="<%= Rails.application.credentials.dig(:mapbox, :public_api_key) %>">
+</div>

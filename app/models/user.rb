@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :jobs
+  has_many :companies
 
   # Profile Pic
   has_one_attached :image, service: :amazon
