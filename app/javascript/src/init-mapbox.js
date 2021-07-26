@@ -1,4 +1,5 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import mapboxgl from 'mapbox-gl';
 
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
@@ -19,6 +20,14 @@ const initMapbox = () => {
             style: 'mapbox://styles/mapbox/streets-v10'
         });
 
+        // Add the control to the map.
+        map.addControl(
+            new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl
+            })
+        );
+
         map.addControl(new mapboxgl.FullscreenControl());
 
         map.on('load', function() {
@@ -28,7 +37,7 @@ const initMapbox = () => {
                 data: jobs,
                 cluster: true,
                 clusterMaxZoom: 14,
-                clusterRadius: 50
+                clusterRadius: 30
             });
 
             map.addLayer({

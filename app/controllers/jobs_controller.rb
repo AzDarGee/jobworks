@@ -3,6 +3,7 @@ class JobsController < ApplicationController
 
   def index
     @jobs = Job.all
+    @search = @jobs.search(params[:search])
   end
 
   def show
@@ -65,7 +66,8 @@ class JobsController < ApplicationController
                                   :job_author,
                                   :remote_ok,
                                   :apply_url,
-                                  :salary_ranges,
+                                  :salary_range,
+                                  :search,
                                   images: [])
     end
 end

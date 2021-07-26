@@ -32,7 +32,16 @@ class Job < ApplicationRecord
       },
       "properties": {
         "job_id": id,
-        "name": title,
+        "title": title,
+        "description": description,
+        "website": url,
+        "apply_url": apply_url,
+        "job_type": job_type,
+        "location": location,
+        "job_author": job_author,
+        "remote": remote_ok,
+        "salary_range": salary_range,
+        "start_date": start_date,
         "info_window": ApplicationController.new.render_to_string(
           partial: "jobs/infowindow",
           locals: { job: self }
@@ -41,4 +50,12 @@ class Job < ApplicationRecord
     }
   end
 
+  def self.search(search)
+    if search
+      @parameter = search.downcase
+      @results = Job.all.where("lower(title) ILIKE :search", search: @parameter)
+    else
+      all
+    end
+  end
 end
