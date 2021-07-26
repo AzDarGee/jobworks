@@ -1,13 +1,13 @@
 <%= form_for @job, html: { multipart: true } do |form| %>
 
-<div class="row">
+<div class="row m-4">
   <div class="col"></div>
   <div class="col-md-10">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title"><%= action_name.capitalize %> Job</h5>
         <%= form.check_box :remote_ok %>
-        <%= form.label :remote_ok, class: "form-label" %>
+        <%= form.label :remote_ok, "Remote", class: "form-label" %>
         <div class="card-text">
           <div class="row">
             <div class="col">
