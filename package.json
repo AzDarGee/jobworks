@@ -4,6 +4,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.13.13",
     "@fortawesome/fontawesome-free": "^5.15.3",
+    "@mapbox/mapbox-gl-geocoder": "^4.7.2",
     "@popperjs/core": "^2.9.2",
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "^6.1.4",

@@ -19,6 +19,15 @@ const initMapbox = () => {
             style: 'mapbox://styles/mapbox/streets-v10'
         });
 
+        map.addControl(new mapboxgl.FullscreenControl());
+
+        map.addControl(
+            new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl
+            })
+        );
+
         map.on('load', function() {
             const jobs = JSON.parse(mapElement.dataset.jobs);
             map.addSource('jobs', {
