@@ -19,6 +19,7 @@ gem 'aws-sdk-s3'
 gem 'cocoon'
 gem 'trix'
 gem 'image_processing'
+gem 'geocoder'
 
 
 group :development, :test do

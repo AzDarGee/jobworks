@@ -1,7 +1,11 @@
 class Job < ApplicationRecord
+
   has_many_attached :images, service: :amazon
   has_rich_text :description
   belongs_to :user
+
+  geocoded_by :location
+  after_validation :geocode, if: :location_changed?
 
   JOB_TYPES = ["Full-Time", "Part-Time", "Contract", "Freelance"]
   SALARY_RANGES = [
