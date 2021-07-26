@@ -6,15 +6,16 @@
         <% jobs.each do |job| %>
           <div class="col-md-4">
             <div class="card mb-4">
-              <img
-                src="https://mdbootstrap.com/img/new/standard/city/062.jpg"
-                class="card-img-top"
-                alt="..."
-                />
+              <% if job.images %>
+                <%= link_to job do %>
+                  <%= image_tag job.images.first, class: "card-img-top" %>
+                <% end %>
+              <% end %>
               <div class="card-body">
-                <h5 class="card-title"><%= job.title %></h5>
+                <h5 class="card-title"><%= link_to job.title, job %></h5>
+                <h6>Images: <%= job.images.count %></h6>
                 <p class="card-text">
-                  <%= truncate(job.description, :length => 50) %>
+                  <%= job.description %>
                 </p>
               </div>
               <ul class="list-group list-group-flush">
@@ -23,8 +24,8 @@
                 <% else %>
                   <li class="list-group-item"><%= job.job_type %></li>
                 <% end %>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item"><%= job.job_type %></li>
+                <li class="list-group-item"><%= job.location %></li>
               </ul>
               <div class="card-body">
                 <a href="#" class="card-link">Card link</a>

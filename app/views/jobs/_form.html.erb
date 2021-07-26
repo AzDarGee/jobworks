@@ -1,51 +1,84 @@
-<%= form_for(@job) do |form| %>
+<%= form_for @job, html: { multipart: true } do |form| %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+<div class="row">
+  <div class="col"></div>
+  <div class="col-md-10">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= action_name.capitalize %> Job</h5>
+        <%= form.check_box :remote_ok %>
+        <%= form.label :remote_ok, class: "form-label" %>
+        <div class="card-text">
+          <div class="row">
+            <div class="col">
+              <!-- Name input -->
+              <div class="form-outline">
+                <%= form.text_field :title, class: "form-control" %>
+                <%= form.label :title, class: "form-label" %>
+              </div>
+            </div>
+            <div class="col">
+              <!-- Email input -->
+              <div class="form-outline">
+                <%= form.text_field :url, class: "form-control" %>
+                <%= form.label :url, class: "form-label" %>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <%= form.text_field :job_type, class: "form-control" %>
+                <%= form.label :job_type, class: "form-label" %>
+              </div>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+          <hr />
 
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-  </div>
+          <div class="row">
+            <div class="col">
+              <!-- Name input -->
+              <div class="form-outline">
+                <%= form.rich_text_area :description, class: "form-control customized-min-height", input_html: { rows: "10" } %>
+                <%= form.label :description, class: "form-label" %>
+              </div>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= form.label :job_type %>
-    <%= form.text_field :job_type %>
-  </div>
+          <hr>
 
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location %>
-  </div>
+          <div class="row">
+            <div class="col">
+              <%= form.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
+              <%= form.label :images, class: "form-label" %>
+            </div>
+            <div class="col">
+              <%= form.text_field :location, class: "form-control" %>
+              <%= form.label :location, class: "form-label" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <%= form.text_field :apply_url, class: "form-control" %>
+              <%= form.label :apply_url, class: "form-label" %>
+            </div>
+            <div class="col">
+              <%= form.text_field :job_author, class: "form-control" %>
+              <%= form.label :job_author, "Company Name", class: "form-label" %>
+            </div>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :images %>
-    <%= form.file_field :images %>
+        <%= form.submit class: "btn btn-primary" %>
+        <%= link_to 'Back', jobs_path %>
+      </div>
+    </div>
   </div>
+  <div class="col"></div>
+</div>
 
-  <div class="field">
-    <%= form.label :job_author %>
-    <%= form.text_field :job_author %>
-  </div>
-
-  <div class="field">
-    <%= form.label :remote_ok %>
-    <%= form.check_box :remote_ok %>
-  </div>
-
-  <div class="field">
-    <%= form.label :apply_url %>
-    <%= form.text_field :apply_url %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
+
+
+
+
+

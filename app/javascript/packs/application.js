@@ -18,3 +18,6 @@ import '../src/bootstrap'
 import '@fortawesome/fontawesome-free/css/all'
 import 'mdb-ui-kit'
 
+
+require("trix")
+require("@rails/actiontext")
