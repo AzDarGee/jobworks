@@ -44,43 +44,30 @@
         <div class="card-text">
 
           <p>
-            <strong>Title:</strong>
-            <%= @job.title %>
+            <h1><%= @job.title %></h1>
+            <%= "Remote" if @job.remote_ok %> | <em><%= link_to "Website", @job.url, taget: "_blank" %></em>
+          </p>
+          <p>
+            <h4><%= @job.job_type %></h4>
           </p>
 
           <p>
-            <strong>Description:</strong>
+            <h4><%= @job.location %></h4>
+          </p>
+
+          <p>
+            <h4><%= @job.job_author %></h4>
+          </p>
+
+          <p>
+
+          </p>
+
+          <p>
+            <%= link_to "Apply here", "http://#{@job.apply_url}", target: "_blank" %>
+          </p>
+          <p>
             <%= @job.description %>
-          </p>
-
-          <p>
-            <strong>Url:</strong>
-            <%= @job.url %>
-          </p>
-
-          <p>
-            <strong>Job type:</strong>
-            <%= @job.job_type %>
-          </p>
-
-          <p>
-            <strong>Location:</strong>
-            <%= @job.location %>
-          </p>
-
-          <p>
-            <strong>Job author:</strong>
-            <%= @job.job_author %>
-          </p>
-
-          <p>
-            <strong>Remote ok:</strong>
-            <%= @job.remote_ok %>
-          </p>
-
-          <p>
-            <strong>Apply url:</strong>
-            <%= @job.apply_url %>
           </p>
 
           <%= link_to 'Edit', edit_job_path(@job) %> |
