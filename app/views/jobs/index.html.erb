@@ -26,6 +26,11 @@
                 <% end %>
                 <li class="list-group-item"><%= job.job_type %></li>
                 <li class="list-group-item"><%= job.location %></li>
+                <li class="list-group-item">
+                  <i class="fa-solid fa-user">
+                    <%= job.user.username %>
+                  </i>
+                </li>
               </ul>
               <div class="card-body">
                 <a href="#" class="card-link">Card link</a>
