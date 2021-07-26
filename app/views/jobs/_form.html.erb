@@ -41,17 +41,22 @@
 
           <div class="row">
             <div class="col">
-              <%= form.select( :salary_range, options_for_select(Job::SALARY_RANGES), { :prompt => true }, required: true, class: "form-control" ) %>
-              <%= form.label :salary_range, class: "form-label" %>
+              <!-- Email input -->
+              <div class="form-outline">
+                <%= form.text_field :tag_list, placeholder: "Tags (separated by commas)", class: "form-control", required: true %>
+                <%= form.label :tag_list, "Tags", class: "form-label" %>
+              </div>
             </div>
           </div>
+
+          <hr />
 
           <div class="row">
             <div class="col">
               <!-- Name input -->
               <div class="form-outline">
-                <%= form.text_field :tags, class: "form-control", required: true %>
-                <%= form.label :tags, "Tags", class: "form-label" %>
+                <%= form.rich_text_area :description, class: "form-control customized-min-height", input_html: { rows: "10" }, required: true %>
+                <%= form.label :description, class: "form-label" %>
               </div>
             </div>
           </div>

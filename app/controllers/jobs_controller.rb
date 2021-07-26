@@ -2,11 +2,17 @@ class JobsController < ApplicationController
   before_action :set_job, only: %i[ show edit update destroy ]
 
   def index
-    @jobs = Job.all
-    @search = @jobs.search(params[:search])
+    if params[:search]
+      @jobs = Job.all.search(params[:search])
+    elsif params[:tag]
+      @jobs = Job.tagged_with(params[:tag])
+    else
+      @jobs = Job.all
+    end
   end
 
   def show
+    @related_jobs = @job.find_related_tags
   end
 
   def new
@@ -68,6 +74,7 @@ class JobsController < ApplicationController
                                   :apply_url,
                                   :salary_range,
                                   :search,
+                                  :tag_list,
                                   images: [])
     end
 end

@@ -46,7 +46,12 @@
           <p>
             <h1><%= @job.job_author %></h1>
             <h4><%= @job.title %></h4>
-            <%= "Remote" if @job.remote_ok %> | <em><%= link_to "Website", @job.url, taget: "_blank" %></em>
+            <p>
+              <% @job.tag_list.each do |tag| %>
+                <%= link_to tag, tag_path(tag: tag) %>
+              <% end %>
+            </p>
+            <%= "Remote" if @job.remote_ok %> | <em><%= link_to "Website", @job.url, target: "_blank" %></em>
           </p>
           <p>
             <h4><%= @job.job_type %></h4>
@@ -70,7 +75,13 @@
           <p>
             <%= @job.description %>
           </p>
-
+          <p>
+            <% if @related_jobs %>
+              <% @related_jobs.each do |r| %>
+                <li><%= r.title %></li>
+              <% end %>
+            <% end %>
+          </p>
           <%= link_to 'Edit', edit_job_path(@job) %> |
           <%= link_to 'Delete', job_path(@job), :confirm => "Are you sure?", :method => :delete %> |
           <%= link_to 'Back', jobs_path %>
