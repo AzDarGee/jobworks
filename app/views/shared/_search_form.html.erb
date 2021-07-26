@@ -1,5 +1,5 @@
 <%= form_with url: jobs_path, method: :get do |form| %>
   <div>
-    <%= form.text_field :search, autocomplete: "off" %>
+    <%= form.text_field :search, autocomplete: "off", placeholder: "Search Jobs", class: "job-search-bar" %>
   </div>
 <% end %>

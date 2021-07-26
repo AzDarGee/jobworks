@@ -20,6 +20,7 @@ gem 'cocoon'
 gem 'trix'
 gem 'image_processing'
 gem 'geocoder'
+gem 'acts-as-taggable-on'
 
 
 group :development, :test do

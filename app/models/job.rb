@@ -1,5 +1,5 @@
 class Job < ApplicationRecord
-  serialize :tags
+  acts_as_taggable_on :tags
 
   has_many_attached :images, service: :amazon
   has_rich_text :description
@@ -53,7 +53,7 @@ class Job < ApplicationRecord
   def self.search(search)
     if search
       @parameter = search.downcase
-      @results = Job.all.where("lower(title) ILIKE :search", search: @parameter)
+      @results = Job.all.where("lower(title) LIKE :search", search: "%#{@parameter}%")
     else
       all
     end
