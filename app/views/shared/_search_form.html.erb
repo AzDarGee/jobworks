@@ -1,12 +1,21 @@
-<%= form_with url: jobs_path, method: :get do |form| %>
-  <div class="mb-4">
-    <%= form.text_field :search, autocomplete: "off", placeholder: "Search Jobs", class: "job-search-bar" %>
-  </div>
-  <div class="tag-cloud mb-4" id="tag_cloud">
-    <% Job.all.each_slice(50) do |jobs| %>
-      <% jobs.each do |job| %>
-        <%= raw job.tag_list.map { |t| link_to t, tag_path(t) }.join(", ") %>
-      <% end %>
+<div class="row">
+  <div class="col">
+    <%= form_with url: jobs_path, method: :get do |form| %>
+      <div class="mb-4">
+        <%= form.text_field :search, autocomplete: "off", placeholder: "Search Jobs", class: "form-control job-search-bar" %>
+      </div>
     <% end %>
   </div>
-<% end %>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="tag-cloud mb-4" id="tag_cloud">
+      <% Job.all.each_slice(50) do |jobs| %>
+        <% jobs.each do |job| %>
+          <%= raw job.tag_list.map { |t| link_to t, tag_path(t) }.join(", ") %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
