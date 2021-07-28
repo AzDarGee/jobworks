@@ -2,7 +2,7 @@
   <div class="col">
     <%= form_with url: jobs_path, method: :get do |form| %>
       <div class="mb-4">
-        <%= form.text_field :search, autocomplete: "off", placeholder: "Search Jobs", class: "form-control job-search-bar" %>
+        <%= form.text_field :search, autocomplete: "off", autofocus: true, placeholder: "Search Jobs", class: "form-control job-search-bar" %>
       </div>
     <% end %>
   </div>
@@ -10,10 +10,17 @@
 
 <div class="row">
   <div class="col">
-    <div class="tag-cloud mb-4" id="tag_cloud">
+    <div class="index-div-tag-cloud">
+      <span class="index-all-tag-cloud">
+        <%= link_to "All", jobs_path %>
+      </span>
       <% Job.all.each_slice(50) do |jobs| %>
         <% jobs.each do |job| %>
-          <%= raw job.tag_list.map { |t| link_to t, tag_path(t) }.join(", ") %>
+          <% job.tag_list.each do |tag| %>
+            <span class="index-tag-cloud">
+              <%= link_to tag, tag_path(tag: tag) %>
+            </span>
+          <% end %>
         <% end %>
       <% end %>
     </div>

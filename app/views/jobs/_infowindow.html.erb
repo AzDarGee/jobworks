@@ -1,7 +1,29 @@
 
 <div class="row">
   <div class="col-md-12">
-    <%= job.title %>
+
+
+    <div class="card map-popup">
+      <img
+        src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
+        class="card-img-top"
+        alt="..."
+        />
+      <div class="card-body">
+        <h5 class="card-title"><%= job.job_author %></h5>
+        <p class="card-text">
+          <h4><%= job.title %></h4>
+          <% if job.remote_ok %>
+            <h5>Remote</h5>
+          <% end %>
+        </p>
+        <p>
+          <%= link_to "Apply", "/jobs/#{job.id}", class: "btn btn-primary map-popup-btn" %>
+        </p>
+      </div>
+    </div>
+
+
   </div>
 </div>
 

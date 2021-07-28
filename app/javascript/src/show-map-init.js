@@ -10,13 +10,13 @@ const fitMapToMarkers = (map, features) => {
     map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
 };
 
-const initMapbox = () => {
-    const mapElement = document.getElementById('map');
+const initShowMapBox = () => {
+    const mapElement = document.getElementById('show-map');
 
     if (mapElement) {
         mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
         const map = new mapboxgl.Map({
-            container: 'map',
+            container: 'show-map',
             style: 'mapbox://styles/mapbox/streets-v10'
         });
 
@@ -28,16 +28,14 @@ const initMapbox = () => {
             }),
             'bottom-left'
         );
-
         map.addControl(new mapboxgl.FullscreenControl(), 'bottom-left');
-
         map.addControl(new mapboxgl.GeolocateControl({
-            positionOptions: {
-                enableHighAccuracy: true
-            },
-            trackUserLocation: true
-        }),
-        'bottom-left');
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            }),
+            'bottom-left');
 
         map.on('load', function() {
             const jobs = JSON.parse(mapElement.dataset.jobs);
@@ -151,4 +149,4 @@ const initMapbox = () => {
     }
 };
 
-export { initMapbox };
+export { initShowMapBox };

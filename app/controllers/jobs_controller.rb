@@ -3,16 +3,18 @@ class JobsController < ApplicationController
 
   def index
     if params[:search]
-      @jobs = Job.all.search(params[:search])
+      @jobs = Job.search_job(params[:search])
     elsif params[:tag]
       @jobs = Job.tagged_with(params[:tag])
     else
       @jobs = Job.all
     end
+    @tags = Job.tag_counts_on(params[:tag]).uniq
   end
 
   def show
     @related_jobs = @job.find_related_tags
+    @geojson = build_geojson
   end
 
   def new
@@ -53,7 +55,7 @@ class JobsController < ApplicationController
   def destroy
     @job.destroy
     respond_to do |format|
-      format.html { redirect_to jobs_url, notice: "Job was successfully destroyed." }
+      format.html { redirect_to jobs_url, notice: "Job was successfully deleted." }
       format.json { head :no_content }
     end
   end
@@ -77,4 +79,14 @@ class JobsController < ApplicationController
                                   :tag_list,
                                   images: [])
     end
+
+
+    def build_geojson
+      @job_feature = [@job]
+      {
+        type: "FeatureCollection",
+        features: @job_feature.map(&:to_feature)
+      }
+    end
+
 end

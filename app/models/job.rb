@@ -1,4 +1,16 @@
 class Job < ApplicationRecord
+  include PgSearch::Model
+
+  pg_search_scope :search_title, against: :title
+
+  pg_search_scope :search_job,
+                  against: [:title, :description],
+                  using: {
+                    tsearch: {
+                      prefix: true
+                    }
+                  }
+
   acts_as_taggable_on :tags
 
   has_many_attached :images, service: :amazon
@@ -63,7 +75,8 @@ class Job < ApplicationRecord
   def self.search(search)
     if search
       @parameter = search.downcase
-      @results = Job.all.where("lower(title) LIKE :search", search: "%#{@parameter}%")
+      # @results = Job.all.where("lower(title) LIKE :search", search: "%#{@parameter}%")
+      @results = Job.where('lower(title) LIKE :search OR lower(description) LIKE :search', search: "%#{@parameter}%")
     else
       all
     end

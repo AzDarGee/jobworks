@@ -15,13 +15,15 @@ ActiveStorage.start()
 
 // Import User JS
 import '../src/bootstrap'
-import '@fortawesome/fontawesome-free/css/all'
+import "@fortawesome/fontawesome-free/css/all"
 import 'mdb-ui-kit'
-import { initMapbox } from '../src/init-mapbox';
+import { initMapbox } from '../src/init-mapbox'
+import { initShowMapBox } from '../src/show-map-init'
 
 require("trix")
 require("@rails/actiontext")
 
 document.addEventListener('turbolinks:load', () => {
     initMapbox();
+    initShowMapBox();
 });

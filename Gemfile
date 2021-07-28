@@ -21,6 +21,7 @@ gem 'trix'
 gem 'image_processing'
 gem 'geocoder'
 gem 'acts-as-taggable-on'
+gem 'pg_search'
 
 
 group :development, :test do
