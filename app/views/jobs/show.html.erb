@@ -61,7 +61,7 @@
               <strong>Start Date: </strong><%= @job.start_date.strftime("%B %d, %Y") %> <br>
             </div>
             <div class="col-md-4">
-              <%= link_to "Apply Here", "#{@job.apply_url.to_s}", target: "_blank", class: 'btn show-apply-here' %>
+              <%= button_to "Apply Here", "#{@job.apply_url.to_s}", target: "_blank", class: 'btn show-apply-here' %>
               <div class="show-div-tag-cloud">
                 <% @job.tag_list.each do |tag| %>
                 <span class="show-tag-cloud">

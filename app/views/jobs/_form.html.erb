@@ -5,7 +5,7 @@
   <div class="col-md-10">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><%= action_name.capitalize %> Job</h5>
+        <h2 class="card-title"><%= action_name.capitalize %> Job</h2>
         <%= form.check_box :remote_ok %>
         <%= form.label :remote_ok, "Remote", class: "form-label" %>
         <div class="card-text">
@@ -99,7 +99,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <%= link_to 'Back', jobs_path, class: "btn btn-danger back-btn-jobs" %>
+            <%= button_to 'Back', jobs_path, class: "btn btn-danger back-btn-jobs" %>
           </div>
         </div>
 
