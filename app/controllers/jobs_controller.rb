@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     if params[:search]
@@ -42,7 +43,7 @@ class JobsController < ApplicationController
 
   def update
     respond_to do |format|
-
+      # binding.pry
       if @job.update(job_params)
         format.html { redirect_to @job, notice: "Job was successfully updated." }
         format.json { render :show, status: :ok, location: @job }

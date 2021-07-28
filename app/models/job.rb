@@ -12,6 +12,8 @@ class Job < ApplicationRecord
                   }
 
   acts_as_taggable_on :tags
+  ActsAsTaggableOn.delimiter = ' '
+  ActsAsTaggableOn.force_lowercase = true
 
   has_many_attached :images, service: :amazon
   has_rich_text :description
@@ -110,5 +112,10 @@ class Job < ApplicationRecord
     else
       all
     end
+  end
+
+  def most_used_tags
+    #returns most and least used tags
+    ActsAsTaggableOn::Tag.most_used(10)
   end
 end

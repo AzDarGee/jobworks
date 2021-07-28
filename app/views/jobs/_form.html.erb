@@ -12,14 +12,14 @@
         <div class="card-text">
           <div class="row">
             <div class="col">
-              <!-- Name input -->
+              <!-- Title input -->
               <div class="form-outline">
                 <%= form.text_field :title, class: "form-control", required: true %>
                 <%= form.label :title, class: "form-label" %>
               </div>
             </div>
             <div class="col">
-              <!-- Email input -->
+              <!-- URL input -->
               <div class="form-outline">
                 <%= form.text_field :url, class: "form-control", required: true %>
                 <%= form.label :url, "Website", class: "form-label" %>
@@ -48,8 +48,12 @@
             <div class="col">
               <!-- Email input -->
               <div class="form-outline">
-                <%= form.text_field :tag_list, placeholder: "Tags (separated by commas)", class: "form-control", required: true %>
-                <%= form.label :tag_list, "Tags", class: "form-label" %>
+                <%= form.text_field :tag_list, placeholder: "Tags (separated by spaces)", class: "form-control", required: true %>
+                <%= form.label :tag_list, "Tags | ", class: "form-label" %>
+
+                <% @job.most_used_tags.each do |tag| %>
+                  <%= tag.name.capitalize %>
+                <% end %>
               </div>
             </div>
           </div>
@@ -70,9 +74,17 @@
 
           <div class="row">
             <div class="col">
-              <%= form.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
+              <%= form.file_field :images, multiple: true, direct_upload: true, class: "form-control job-images" %>
               <%= form.label :images, class: "form-label" %>
             </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <output id="list"></output>
+            </div>
+          </div>
+
+          <div class="row">
             <div class="col">
               <%= form.text_field :location, class: "form-control", required: true %>
               <%= form.label :location, class: "form-label" %>
@@ -93,6 +105,13 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col">
+            <%= render 'payment' %>
+          </div>
+        </div>
+
         <div class="row mb-2">
           <div class="col">
             <%= form.submit "Save Job", class: "btn btn-primary save-btn-jobs" %>
