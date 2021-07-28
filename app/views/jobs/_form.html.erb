@@ -1,4 +1,5 @@
-<%= form_for @job, html: { multipart: true } do |form| %>
+<%= form_for @job, html: { multipart: true }, local: true do |form| %>
+
 
 <div class="row m-4">
   <div class="col"></div>
@@ -94,7 +95,7 @@
         </div>
         <div class="row mb-2">
           <div class="col">
-            <%= form.submit "Save #{controller_name.capitalize.singularize}", class: "btn btn-primary save-btn-jobs" %>
+            <%= form.submit "Save Job", class: "btn btn-primary save-btn-jobs" %>
           </div>
         </div>
         <div class="row">

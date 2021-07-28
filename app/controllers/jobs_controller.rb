@@ -9,7 +9,7 @@ class JobsController < ApplicationController
     else
       @jobs = Job.all
     end
-    @tags = Job.tag_counts_on(params[:tag]).uniq
+    @tags = Job.tag_counts_on(params[:tag])
   end
 
   def show
@@ -30,7 +30,7 @@ class JobsController < ApplicationController
     @job = @user.jobs.new(job_params)
 
     respond_to do |format|
-      if ((@job.save) && (@job.user.role == "Employer"))
+      if @job.save
         format.html { render :show, notice: "Job was successfully created." }
         format.json { render :show, status: :created, location: @job }
       else
@@ -42,6 +42,7 @@ class JobsController < ApplicationController
 
   def update
     respond_to do |format|
+
       if @job.update(job_params)
         format.html { redirect_to @job, notice: "Job was successfully updated." }
         format.json { render :show, status: :ok, location: @job }
