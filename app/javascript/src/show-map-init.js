@@ -7,7 +7,7 @@ mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 const fitMapToMarkers = (map, features) => {
     const bounds = new mapboxgl.LngLatBounds();
     features.forEach(({ geometry }) => bounds.extend(geometry.coordinates));
-    map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
+    map.fitBounds(bounds, { padding: 70, maxZoom: 12 });
 };
 
 const initShowMapBox = () => {
@@ -17,25 +17,11 @@ const initShowMapBox = () => {
         mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
         const map = new mapboxgl.Map({
             container: 'show-map',
-            style: 'mapbox://styles/mapbox/streets-v10'
+            style: 'mapbox://styles/mapbox/dark-v10'
         });
 
-        // Add the control to the map.
-        map.addControl(
-            new MapboxGeocoder({
-                accessToken: mapboxgl.accessToken,
-                mapboxgl: mapboxgl
-            }),
-            'bottom-left'
-        );
-        map.addControl(new mapboxgl.FullscreenControl(), 'bottom-left');
-        map.addControl(new mapboxgl.GeolocateControl({
-                positionOptions: {
-                    enableHighAccuracy: true
-                },
-                trackUserLocation: true
-            }),
-            'bottom-left');
+        // disable map zoom when using scroll
+        map.scrollZoom.disable();
 
         map.on('load', function() {
             const jobs = JSON.parse(mapElement.dataset.jobs);

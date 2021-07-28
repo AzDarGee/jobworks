@@ -75,6 +75,7 @@ class JobsController < ApplicationController
                                   :remote_ok,
                                   :apply_url,
                                   :salary_range,
+                                  :start_date,
                                   :search,
                                   :tag_list,
                                   images: [])

@@ -43,21 +43,22 @@
       <div class="card-body">
         <div class="card-text">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col">
               <span class="show-job-author"><%= @job.job_author %></span>
               <span class="show-website">
                 <% job_url = @job.url.to_s %>
-                  <a href="<%= @job.url.to_s %>" target="_blank">
+                <a href="<%= @job.url.to_s %>" target="_blank">
                   <i class="fas fa-external-link-square-alt"></i>
                 </a>
               </span>
               <h6><%= @job.job_type %></h6>
               <h3 class="mb-0"><%= @job.title %></h3>
               <%= "Remote |" if @job.remote_ok %> <%= @job.location %> <br>
+              <%= @job.salary_range %> <br>
+              <strong>Start Date: </strong><%= @job.start_date.strftime("%B %d, %Y") %> <br>
             </div>
             <div class="col-md-4">
               <%= link_to "Apply Here", "#{@job.apply_url.to_s}", target: "_blank", class: 'show-apply-here' %>
-
               <div class="show-div-tag-cloud">
                 <% @job.tag_list.each do |tag| %>
                 <span class="show-tag-cloud">
@@ -67,6 +68,14 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col">
+              <div class="show-job-created">
+                Posted: <%= @job.created_at.strftime("%B %d, %Y") %>
+              </div>
+            </div>
+          </div>
+
           <div class="row">
             <div class="col">
               <div id="show-map"

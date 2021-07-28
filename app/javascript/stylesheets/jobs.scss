@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .jobworks-container {
-  margin-top: 20px;
+  margin-top: 80px;
 }
 
 .post-job-btn {
@@ -68,6 +68,7 @@
 .index-div-tag-cloud {
   text-align: center;
   margin: 20px;
+  line-height: 45px;
 
   .index-tag-cloud {
     background-color: #0076ff;
@@ -98,3 +99,11 @@
     }
   }
 }
+
+
+
+.show-job-created {
+  float: right;
+  color: #808e9b;
+}
+

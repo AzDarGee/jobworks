@@ -37,6 +37,10 @@
               <%= form.select( :salary_range, options_for_select(Job::SALARY_RANGES), { :prompt => true }, required: true, class: "form-control" ) %>
               <%= form.label :salary_range, class: "form-label" %>
             </div>
+            <div class="col">
+              <%= form.date_field :start_date, required: true, class: "form-control" %>
+              <%= form.label :start_date, class: "form-label" %>
+            </div>
           </div>
 
           <div class="row">
