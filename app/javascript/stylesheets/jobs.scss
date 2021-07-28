@@ -36,7 +36,7 @@
   color: white;
 }
 .show-apply-here:hover {
-  color: black;
+  color: white;
 }
 .show-website {
   a {
@@ -100,10 +100,19 @@
   }
 }
 
-
-
 .show-job-created {
   float: right;
   color: #808e9b;
+}
+
+.save-btn-jobs {
+  width: 100%;
+}
+
+.back-btn-jobs {
+  background-color: #ff4d4d;
+  border-color: #ff4d4d;
+  width: 100%;
+  color: white;
 }
 

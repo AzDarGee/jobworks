@@ -11,9 +11,11 @@
 <div class="row">
   <div class="col">
     <div class="index-div-tag-cloud">
-      <span class="index-all-tag-cloud">
-        <%= link_to "All", jobs_path %>
-      </span>
+      <% if Job.all.size > 0 %>
+        <span class="index-all-tag-cloud">
+          <%= link_to "All", jobs_path %>
+        </span>
+      <% end %>
       <% Job.all.each_slice(50) do |jobs| %>
         <% jobs.each do |job| %>
           <% job.tag_list.each do |tag| %>

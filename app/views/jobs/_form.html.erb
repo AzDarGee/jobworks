@@ -86,11 +86,23 @@
               <%= form.text_field :job_author, class: "form-control", required: true %>
               <%= form.label :job_author, "Company Name", class: "form-label" %>
             </div>
+            <div class="col">
+              <%= form.select( :industry, options_for_select(Job::INDUSTRIES), { :prompt => true }, required: true, class: "form-control" ) %>
+              <%= form.label :industry, class: "form-label" %>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col">
+            <%= form.submit "Save #{controller_name.capitalize.singularize}", class: "btn btn-primary save-btn-jobs" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= link_to 'Back', jobs_path, class: "btn btn-danger back-btn-jobs" %>
           </div>
         </div>
 
-        <%= form.submit "Save #{controller_name.capitalize.singularize}", class: "btn btn-primary" %>
-        <%= link_to 'Back', jobs_path %>
       </div>
     </div>
   </div>

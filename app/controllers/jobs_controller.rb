@@ -76,6 +76,7 @@ class JobsController < ApplicationController
                                   :apply_url,
                                   :salary_range,
                                   :start_date,
+                                  :industry,
                                   :search,
                                   :tag_list,
                                   images: [])

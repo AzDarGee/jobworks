@@ -40,6 +40,36 @@ class Job < ApplicationRecord
     "$150,000 - $200,000",
     "$200,000 +"
   ]
+  INDUSTRIES = [
+    "Advertising",
+    "Agriculture",
+    "Communications",
+    "Construction",
+    "Creative",
+    "Education",
+    "Entertainment",
+    "Farming",
+    "Fashion",
+    "Finance",
+    "Green",
+    "Heavy",
+    "Hospitality",
+    "Information",
+    "Information Technology",
+    "Infrastructure",
+    "Light",
+    "Manufacturing",
+    "Materials",
+    "Media",
+    "Music",
+    "Publishing",
+    "Retail",
+    "Robotics",
+    "Service",
+    "Space",
+    "Technology",
+    "Telecom"
+  ]
 
   def coordinates
     [longitude, latitude]
