@@ -16,9 +16,11 @@
 
       <ul class="navbar-nav">
         <% if current_user %>
-          <li class="nav-item">
-            <%= link_to "+ Post Job", new_job_path, class: "nav-link post-job-btn", "aria-current" => "page" %>
-          </li>
+          <% if current_user.role == "Employer" %>
+            <li class="nav-item">
+              <%= link_to "+ Post Job", new_job_path, class: "nav-link post-job-btn", "aria-current" => "page" %>
+            </li>
+          <% end %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= current_user.email %>
@@ -26,6 +28,11 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
                 <%= link_to current_user.username, edit_user_registration_path, class: 'dropdown-item' %>
+              </li>
+              <li>
+                <% if current_user.role == "Employer" %>
+                  <%= link_to "My Jobs", my_jobs_path, class: 'dropdown-item' %>
+                <% end %>
               </li>
               <li>
                 <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>

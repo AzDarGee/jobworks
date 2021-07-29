@@ -29,6 +29,8 @@ class Job < ApplicationRecord
             :job_type,
             :location,
             :job_author,
+            :industry,
+            :start_date,
             :remote_ok,
             :salary_range, :presence => true
 

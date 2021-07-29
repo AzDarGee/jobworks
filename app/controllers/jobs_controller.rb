@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: %i[ show edit update destroy ]
+  before_action :set_job, only: %i[ show edit update destroy delete_upload ]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -11,6 +11,11 @@ class JobsController < ApplicationController
       @jobs = Job.all
     end
     @tags = Job.tag_counts_on(params[:tag])
+  end
+
+  def my_jobs
+    @user = current_user
+    @my_jobs = current_user.jobs
   end
 
   def show
@@ -30,31 +35,31 @@ class JobsController < ApplicationController
     @user = current_user
     @job = @user.jobs.new(job_params)
 
-    token = params[:stripeToken]
-    job_type = params[:job_type]
-    job_title = params[:title]
-    card_brand = params[:user][:card_brand]
-    card_exp_month = params[:user][:card_exp_month]
-    card_exp_year = params[:user][:card_exp_year]
-    card_last4 = params[:user][:card_last4]
-
-    charge = Stripe::Charge.create(
-      :amount => 10000,
-      :currency => "usd",
-      :description => job_type,
-      :statement_descriptor => job_title,
-      :source => token
-    )
-
-    current_user.stripe_id = charge.id
-    current_user.card_brand = card_brand
-    current_user.card_expiry_month = card_exp_month
-    current_user.card_expiry_year = card_exp_year
-    current_user.card_last4 = card_last4
-    current_user.save!
+    # token = params[:stripeToken]
+    # job_type = params[:job_type]
+    # job_title = params[:title]
+    # card_brand = params[:user][:card_brand]
+    # card_exp_month = params[:user][:card_exp_month]
+    # card_exp_year = params[:user][:card_exp_year]
+    # card_last4 = params[:user][:card_last4]
+    #
+    # charge = Stripe::Charge.create(
+    #   :amount => 0,
+    #   :currency => "usd",
+    #   :description => job_type,
+    #   :statement_descriptor => job_title,
+    #   :source => token
+    # )
+    #
+    # current_user.stripe_id = charge.id
+    # current_user.card_brand = card_brand
+    # current_user.card_expiry_month = card_exp_month
+    # current_user.card_expiry_year = card_exp_year
+    # current_user.card_last4 = card_last4
+    # current_user.save!
 
     respond_to do |format|
-      if @job.save
+      if @job.save && (@job.user.role == "Employer")
         format.html { render :show, notice: "Your job listing was purchased successfully." }
         format.json { render :show, status: :created, location: @job }
       else
@@ -89,6 +94,12 @@ class JobsController < ApplicationController
       format.html { redirect_to jobs_url, notice: "Job was successfully deleted." }
       format.json { head :no_content }
     end
+  end
+
+  def delete_upload
+    attachments = ActiveStorage::Attachment.where(id: params[:upload_id])
+    attachments.map(&:purge)
+    redirect_to edit_job_path(@job), notice: 'Image deleted.'
   end
 
   private
