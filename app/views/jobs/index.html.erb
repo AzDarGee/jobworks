@@ -12,6 +12,7 @@
                 <% end %>
               <% end %>
               <div class="card-body">
+                <h3 class="card-company"><%= job.job_author %></h3>
                 <h5 class="card-title"><%= link_to job.title, job %></h5>
                 <h6>Images: <%= job.images.count %></h6>
                 <p class="card-text">

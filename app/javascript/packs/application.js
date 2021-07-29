@@ -16,7 +16,7 @@ ActiveStorage.start()
 // Import User JS
 import '../src/bootstrap'
 import "@fortawesome/fontawesome-free/css/all"
-import 'mdb-ui-kit'
+// import 'mdb-ui-kit'
 import { initMapbox } from '../src/init-mapbox'
 import { initShowMapBox } from '../src/show-map-init'
 import '../src/jobs'

@@ -1,14 +1,19 @@
 <% if !@job.persisted? %>
-  <h4 class="subtitle is-4">Payment</h4>
-
-  <div class="notification is-light has-text-centered">
-    <i class="fa fa-credit-card"></i>
-    All jobs cost <strong>$100</strong> USD for 30 days.
-    <span class="block mb-4"></span>
+  <div class="row justify-content-center payment-title p-5 mt-4">
+    <div class="row">
+      <h4 class="subtitle mt-4">Payment</h4>
+      <span><i class="fab fa-cc-stripe" style="font-size: 4em;"></i></span>
+      <div class="notification is-light has-text-centered">
+        All jobs cost <strong>$100</strong> USD for 30 days.
+        <span class="block mb-4"></span>
+      </div>
+    </div>
   </div>
 
-  <div class="form-row">
+
+  <div class="form-row p-4 m-4">
     <label for="card-element" class="label">
+      <i class="fa fa-credit-card"></i>
       Enter credit or debit card
     </label>
 
@@ -20,8 +25,8 @@
   </div>
 
   <% if current_user.stripe_id.present? %>
-    <div class="last-card bg-light pa4 border-radius-3 mt4">
-      <h5 class="is-6 title pt2">Previously used card</h5>
+    <div class="last-card bg-light p-4 border-radius-3 m-4">
+      <h5 class="is-6 title p-2">Previously used card</h5>
       <table class="table is-narrow bg-light is-fullwidth">
         <thead>
         <th>Card Brand</th>
@@ -32,8 +37,8 @@
         <tr>
           <td><%= current_user.card_brand %></td>
           <td><%= current_user.card_last4 %></td>
-          <td><%= current_user.card_exp_month %></td>
-          <td><%= current_user.card_exp_year %></td>
+          <td><%= current_user.card_expiry_month %></td>
+          <td><%= current_user.card_expiry_year %></td>
         </tr>
       </table>
     </div>
