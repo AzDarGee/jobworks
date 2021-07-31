@@ -6,7 +6,8 @@
       <% jobs.each do |job| %>
         <div class="col">
           <div class="card p-0 mb-4">
-            <% if job.images %>
+            <%# binding.pry %>
+            <% if job.images.attached? %>
               <%= link_to job do %>
                 <%= image_tag job.images.first, class: "card-img-top" %>
               <% end %>
@@ -14,33 +15,49 @@
             <div class="card-body">
               <h3 class="card-company"><%= job.job_author %></h3>
               <h5 class="card-title"><%= link_to job.title, job %></h5>
-              <h6>Images: <%= job.images.count %></h6>
+              <h6>Images: <%= job.images.count if job.images %></h6>
+              <h6><%= job.salary_range %></h6>
               <p class="card-text">
-
+              <div class="show-jobs-description">
+                <%= job.description.to_plain_text.truncate(250) %>
+              </div>
+              <% job.tag_list.each do |tag| %>
+                  <span class="show-tag-cloud float-start">
+                    <%= link_to tag, tag_path(tag: tag) %>
+                  </span>
+              <% end %>
               </p>
             </div>
             <ul class="list-group list-group-flush">
               <% if job.remote_ok %>
                 <li class="list-group-item">
-                  <i class="fas fa-laptop-house"></i>
-                  Remote
+                  <i class="fas fa-laptop-house p-2">
+                    <span>Remote</span>
+                  </i>
                 </li>
               <% end %>
-              <li class="list-group-item"><%= job.job_type %></li>
-              <li class="list-group-item"><%= job.location %></li>
               <li class="list-group-item">
-                <i class="fas fa-user">
+                <i class="fas fa-file-contract p-2">
+                  <%= job.job_type %>
+                </i>
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-compass p-2">
+                  <%= job.location %>
+                </i>
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-user p-2">
                   <%= job.user.username %>
                 </i>
               </li>
             </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
           </div>
         </div>
       <% end %>
     </div>
   <% end %>
 </div>
+
+
+
