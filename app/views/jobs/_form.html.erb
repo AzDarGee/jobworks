@@ -27,16 +27,15 @@
             </div>
             <div class="col">
               <div class="form-outline">
-                <%= form.select( :job_type, options_for_select(Job::JOB_TYPES), { :prompt => true }, required: true, class: "form-control", selected: true ) %>
+                <%= form.select( :job_type, options_for_select(Job::JOB_TYPES, @job.job_type), { :prompt => true }, required: true, class: "form-control") %>
                 <%= form.label :job_type, class: "form-label" %>
-                | <%= "#{Job::JOB_TYPES[@job.job_type.to_i][0]}" %>
               </div>
             </div>
           </div>
 
           <div class="row">
             <div class="col">
-              <%= form.select( :salary_range, options_for_select(Job::SALARY_RANGE), { :prompt => true }, required: true, class: "form-control" ) %>
+              <%= form.select( :salary_range, options_for_select(Job::SALARY_RANGE, @job.salary_range), { :prompt => true }, required: true, class: "form-control" ) %>
               <%= form.label :salary_range, class: "form-label" %>
             </div>
             <div class="col">
@@ -110,7 +109,7 @@
               <%= form.label :job_author, "Company Name", class: "form-label" %>
             </div>
             <div class="col">
-              <%= form.select( :industry, options_for_select(Job::INDUSTRIES), { :prompt => true }, required: true, class: "form-control" ) %>
+              <%= form.select( :industry, options_for_select(Job::INDUSTRIES, @job.industry), { :prompt => true }, required: true, class: "form-control" ) %>
               <%= form.label :industry, class: "form-label" %>
             </div>
           </div>

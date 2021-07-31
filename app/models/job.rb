@@ -34,20 +34,16 @@ class Job < ApplicationRecord
             :remote_ok,
             :salary_range, :presence => true
 
-  JOB_TYPES = [
-    ["Full-Time", 0],
-    ["Part-Time", 1],
-    ["Contract", 2],
-    ["Freelance", 3]
-  ]
+  JOB_TYPES = ["Full-Time", "Part-Time", "Contract", "Freelance"]
+
   SALARY_RANGE = [
-    ["$20,000 - $50,000", 0],
-    ["$50,000 - $75,000", 1],
-    ["$75,000 - $90,000", 2],
-    ["$90,000 - $110,000", 3],
-    ["$110,000 - $150,000", 4],
-    ["$150,000 - $200,000", 5],
-    ["$200,000 +", 6]
+    "$20,000 - $50,000",
+    "$50,000 - $75,000",
+    "$75,000 - $90,000",
+    "$90,000 - $110,000",
+    "$110,000 - $150,000",
+    "$150,000 - $200,000",
+    "$200,000 +"
   ]
   INDUSTRIES = [
     "Advertising",

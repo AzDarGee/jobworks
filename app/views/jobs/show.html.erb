@@ -56,8 +56,8 @@
               <br>
               <h1 class="mb-0" style="display: inline"><%= @job.title %></h1> | <h5 style="display: inline"><%= @job.industry %></h5>
               <h6><%= "Remote |" if @job.remote_ok %> <%= @job.location %></h6>
-              <h6 class="mb-0"><%= Job::JOB_TYPES[@job.job_type.to_i][0] %></h6>
-              <%= Job::SALARY_RANGE[@job.salary_range.to_i][0] %> <br>
+              <h6 class="mb-0"><%= @job.job_type %></h6>
+              <%= @job.salary_range %> <br>
               <strong>Start Date: </strong><%= @job.start_date.strftime("%B %d, %Y") %> <br>
             </div>
             <div class="col-md-4">
