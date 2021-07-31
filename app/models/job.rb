@@ -4,7 +4,7 @@ class Job < ApplicationRecord
   pg_search_scope :search_title, against: :title
 
   pg_search_scope :search_job,
-                  against: [:title, :description],
+                  against: [:title, :description, :job_author],
                   using: {
                     tsearch: {
                       prefix: true
@@ -105,16 +105,6 @@ class Job < ApplicationRecord
         )
       }
     }
-  end
-
-  def self.search(search)
-    if search
-      @parameter = search.downcase
-      # @results = Job.all.where("lower(title) LIKE :search", search: "%#{@parameter}%")
-      @results = Job.where('lower(title) LIKE :search OR lower(description) LIKE :search', search: "%#{@parameter}%")
-    else
-      all
-    end
   end
 
   def most_used_tags

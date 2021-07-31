@@ -16,7 +16,7 @@
                 <h3 class="card-company"><%= job.job_author %></h3>
                 <h5 class="card-title"><%= link_to job.title, job %></h5>
                 <h6>Images: <%= job.images.count if job.images %></h6>
-                <h6><%= Job::SALARY_RANGE[job.salary_range.to_i][0] %></h6>
+                <h6><%= job.salary_range %></h6>
                 <p class="card-text">
 
                 </p>
@@ -31,7 +31,7 @@
                 <% end %>
                 <li class="list-group-item">
                   <i class="fas fa-file-contract p-2">
-                    <%= Job::JOB_TYPES[job.job_type.to_i][0] %>
+                    <%= job.job_type %>
                   </i>
                 </li>
                 <li class="list-group-item">
