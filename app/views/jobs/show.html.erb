@@ -98,11 +98,20 @@
               <% end %>
             <% end %>
           </p>
-
-          <% if current_user.id == @job.user_id %>
-            <%= link_to 'Edit', edit_job_path(@job) %>
-          <% end %>
-          <%= link_to 'Back', jobs_path %>
+          <div class="row">
+            <div class="col">
+              <div class="back-btn-jobs p-2 text-center">
+                <%= link_to 'Back', jobs_path, class: "back-btn-jobs" %>
+              </div>
+            </div>
+            <div class="col">
+              <% if current_user.id == @job.user_id %>
+                <div class="edit-btn-jobs p-2 text-center">
+                  <%= link_to 'Edit', edit_job_path(@job), class: "edit-btn-jobs" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
 
         </div>
       </div>

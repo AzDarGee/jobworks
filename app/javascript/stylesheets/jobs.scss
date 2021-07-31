@@ -114,6 +114,12 @@
   border-color: #3498db;
   width: 100%;
   color: white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
 }
 
 .edit-btn-jobs {
@@ -121,6 +127,12 @@
   border-color: #e74c3c;
   width: 100%;
   color: white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
 }
 
 .images-preview-thumb {
