@@ -18,6 +18,7 @@ RUN apk add --update --virtual \
     imagemagick \
     git \
     tzdata \
+    poppler \
     && rm -rf /var/cache/apk/*
 
 WORKDIR /app

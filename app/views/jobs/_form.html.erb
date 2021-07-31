@@ -27,8 +27,9 @@
             </div>
             <div class="col">
               <div class="form-outline">
-                <%= form.select( :job_type, options_for_select(Job::JOB_TYPES), { :prompt => true }, required: true, class: "form-control" ) %>
+                <%= form.select( :job_type, options_for_select(Job::JOB_TYPES), { :prompt => true }, required: true, class: "form-control", selected: true ) %>
                 <%= form.label :job_type, class: "form-label" %>
+                | <%= "#{Job::JOB_TYPES[@job.job_type.to_i][0]}" %>
               </div>
             </div>
           </div>
@@ -68,16 +69,15 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row mb-2 p-2">
             <div class="col">
               <% if @job.images.attached? %>
                 <% @job.images.each do |image| %>
-                  <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
-                  <div class="overlay">
-                    <%= link_to delete_upload_job_url(@job, image.id), method: :delete, data: { confirm: 'Are you sure you want to delete this image?' }, class:"delete_image" do %>
-                    <i class="fa fa-times"></i>
-                    <% end %>
-                  </div>
+                  <%= link_to delete_upload_job_url(@job, image.id), method: :delete, data: { confirm: 'Are you sure you want to delete this image?' }, class:"delete_image" do %>
+                    <i class="fa fa-times">
+                    <%= image_tag image.variant(resize_to_limit: [200, 200]), class: "mb-2" %>
+                    </i>
+                  <% end %>
                 <% end %>
               <% end %>
             </div>

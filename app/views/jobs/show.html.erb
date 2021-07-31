@@ -56,12 +56,12 @@
               <br>
               <h1 class="mb-0" style="display: inline"><%= @job.title %></h1> | <h5 style="display: inline"><%= @job.industry %></h5>
               <h6><%= "Remote |" if @job.remote_ok %> <%= @job.location %></h6>
-              <h6 class="mb-0"><%= @job.job_type %></h6>
+              <h6 class="mb-0"><%= Job::JOB_TYPES[@job.job_type.to_i][0] %></h6>
               <%= @job.salary_range %> <br>
               <strong>Start Date: </strong><%= @job.start_date.strftime("%B %d, %Y") %> <br>
             </div>
             <div class="col-md-4">
-              <%= button_to "Apply Here", "#{@job.apply_url.to_s}", target: "_blank", class: 'btn show-apply-here' %>
+              <%= link_to "Apply Here", "#{@job.apply_url.to_s}", target: "_blank", class: 'btn show-apply-here' %>
               <div class="show-div-tag-cloud">
                 <% @job.tag_list.each do |tag| %>
                 <span class="show-tag-cloud">

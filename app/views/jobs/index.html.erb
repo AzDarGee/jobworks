@@ -6,7 +6,8 @@
         <% jobs.each do |job| %>
           <div class="col">
             <div class="card p-0 mb-4">
-              <% if job.images %>
+              <%# binding.pry %>
+              <% if job.images.attached? %>
                 <%= link_to job do %>
                   <%= image_tag job.images.first, class: "card-img-top" %>
                 <% end %>
@@ -14,7 +15,7 @@
               <div class="card-body">
                 <h3 class="card-company"><%= job.job_author %></h3>
                 <h5 class="card-title"><%= link_to job.title, job %></h5>
-                <h6>Images: <%= job.images.count %></h6>
+                <h6>Images: <%= job.images.count if job.images %></h6>
                 <p class="card-text">
 
                 </p>
@@ -26,8 +27,16 @@
                     Remote
                   </li>
                 <% end %>
-                <li class="list-group-item"><%= job.job_type %></li>
-                <li class="list-group-item"><%= job.location %></li>
+                <li class="list-group-item">
+                  <i class="fas fa-file-contract">
+                    <%= Job::JOB_TYPES[job.job_type.to_i][0] %>
+                  </i>
+                </li>
+                <li class="list-group-item">
+                  <i class="fas fa-compass">
+                    <%= job.location %>
+                  </i>
+                </li>
                 <li class="list-group-item">
                   <i class="fas fa-user">
                     <%= job.user.username %>
