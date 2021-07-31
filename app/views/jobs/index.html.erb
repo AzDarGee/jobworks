@@ -18,7 +18,9 @@
                 <h6>Images: <%= job.images.count if job.images %></h6>
                 <h6><%= job.salary_range %></h6>
                 <p class="card-text">
-
+                <div class="show-jobs-description">
+                  <%= job.description.to_plain_text.truncate(250) %>
+                </div>
                 </p>
               </div>
               <ul class="list-group list-group-flush">
@@ -45,10 +47,6 @@
                   </i>
                 </li>
               </ul>
-              <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
             </div>
           </div>
         <% end %>
