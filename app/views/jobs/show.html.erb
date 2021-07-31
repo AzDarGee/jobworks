@@ -108,13 +108,13 @@
           <div class="row">
             <div class="col">
               <div class="back-btn-jobs p-2 text-center">
-                <%= link_to 'Back', jobs_path, class: "back-btn-jobs" %>
+                <%= link_to 'Back', jobs_path, class: "btn-link back-btn-jobs" %>
               </div>
             </div>
             <div class="col">
               <% if current_user.id == @job.user_id %>
                 <div class="edit-btn-jobs p-2 text-center">
-                  <%= link_to 'Edit', edit_job_path(@job), class: "edit-btn-jobs" %>
+                  <%= link_to 'Edit', edit_job_path(@job), class: "btn-link edit-btn-jobs" %>
                 </div>
               <% end %>
             </div>
