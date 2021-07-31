@@ -16,29 +16,31 @@
                 <h3 class="card-company"><%= job.job_author %></h3>
                 <h5 class="card-title"><%= link_to job.title, job %></h5>
                 <h6>Images: <%= job.images.count if job.images %></h6>
+                <h6><%= Job::SALARY_RANGE[job.salary_range.to_i][0] %></h6>
                 <p class="card-text">
 
                 </p>
               </div>
               <ul class="list-group list-group-flush">
                 <% if job.remote_ok %>
-                  <li class="list-group-item">
-                    <i class="fas fa-laptop-house"></i>
-                    Remote
-                  </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-laptop-house p-2">
+                        <span>Remote</span>
+                      </i>
+                    </li>
                 <% end %>
                 <li class="list-group-item">
-                  <i class="fas fa-file-contract">
+                  <i class="fas fa-file-contract p-2">
                     <%= Job::JOB_TYPES[job.job_type.to_i][0] %>
                   </i>
                 </li>
                 <li class="list-group-item">
-                  <i class="fas fa-compass">
+                  <i class="fas fa-compass p-2">
                     <%= job.location %>
                   </i>
                 </li>
                 <li class="list-group-item">
-                  <i class="fas fa-user">
+                  <i class="fas fa-user p-2">
                     <%= job.user.username %>
                   </i>
                 </li>
