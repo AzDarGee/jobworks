@@ -4,7 +4,7 @@ class Job < ApplicationRecord
   pg_search_scope :search_title, against: :title
 
   pg_search_scope :search_job,
-                  against: [:title, :description, :job_author],
+                  against: [:title, :description, :job_author, :location],
                   using: {
                     tsearch: {
                       prefix: true
@@ -22,17 +22,17 @@ class Job < ApplicationRecord
   geocoded_by :location
   after_validation :geocode, if: :location_changed?
 
-  validates :title,
-            :url,
-            :apply_url,
-            :description,
-            :job_type,
-            :location,
-            :job_author,
-            :industry,
-            :start_date,
-            :remote_ok,
-            :salary_range, :presence => true
+  # validates :title,
+  #           :url,
+  #           :apply_url,
+  #           :description,
+  #           :job_type,
+  #           :location,
+  #           :job_author,
+  #           :industry,
+  #           :start_date,
+  #           :remote_ok,
+  #           :salary_range, :presence => true
 
   JOB_TYPES = ["Full-Time", "Part-Time", "Contract", "Freelance"]
 
