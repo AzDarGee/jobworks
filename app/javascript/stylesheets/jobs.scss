@@ -135,6 +135,19 @@
   }
 }
 
+.delete-btn-jobs {
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+
 .images-preview-thumb {
   width: 100px;
   margin: 5px;

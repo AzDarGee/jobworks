@@ -22,19 +22,18 @@ class Job < ApplicationRecord
   geocoded_by :location
   after_validation :geocode, if: :location_changed?
 
-  # validates :title,
-  #           :url,
-  #           :apply_url,
-  #           :description,
-  #           :job_type,
-  #           :location,
-  #           :job_author,
-  #           :industry,
-  #           :start_date,
-  #           :remote_ok,
-  #           :salary_range, :presence => true
+  validates :title,
+            :url,
+            :apply_url,
+            :description,
+            :job_type,
+            :location,
+            :job_author,
+            :industry,
+            :start_date,
+            :salary_range, :presence => true
 
-  JOB_TYPES = ["Full-Time", "Part-Time", "Contract", "Freelance"]
+  JOB_TYPES = ["Full-Time", "Part-Time", "Contract", "Freelance", "Internship"]
 
   SALARY_RANGE = [
     "$20,000 - $50,000",

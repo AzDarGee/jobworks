@@ -129,12 +129,18 @@
 
         <div class="row mb-2">
           <div class="col">
-            <%= link_to 'Back', jobs_path, class: "btn btn-link btn-danger back-btn-jobs" %>
-          </div>
-          <% if action_name == 'edit' %>
-            <div class="col">
-              <%= link_to 'Delete', job_path(@job), :confirm => "Are you sure?", :method => :delete, class: "btn btn-link edit-btn-jobs" %>
+            <div class="back-btn-jobs p-2 text-center">
+              <%= link_to 'Back', jobs_path, class: "btn-link back-btn-jobs" %>
             </div>
+          </div>
+          <% if (action_name == 'edit') %>
+            <% if (current_user.id == @job.user_id) || (current_user.is_admin) %>
+              <div class="col">
+                <div class="delete-btn-jobs p-2 text-center">
+                  <%= link_to 'Delete', job_path(@job), :confirm => "Are you sure?", :method => :delete, class: "btn-link delete-btn-jobs" %>
+                </div>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>

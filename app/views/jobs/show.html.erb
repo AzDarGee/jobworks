@@ -63,9 +63,9 @@
 
               <h1 class="mb-0" style="display: inline"><%= @job.title %></h1> | <h5 style="display: inline"><%= @job.industry %></h5>
               <h6><%= "Remote |" if @job.remote_ok %> <%= @job.location %></h6>
-              <h6 class="mb-0"><%= @job.job_type %></h6>
-              <%= @job.salary_range %> <br>
-              <strong>Start Date: </strong><%= @job.start_date.strftime("%B %d, %Y") %> <br>
+              <h6><%= @job.job_type.capitalize %></h6>
+              <h6><%= @job.salary_range %></h6>
+              <h6><strong>Start Date: </strong><%= @job.start_date.strftime("%B %d, %Y") %></h6>
             </div>
             <div class="col-md-4">
               <%= link_to "Apply Here", "#{@job.apply_url.to_s}", target: "_blank", class: 'btn-link show-apply-here' %>
@@ -101,7 +101,7 @@
           <p>
             <% if @related_jobs %>
               <% @related_jobs.each do |r| %>
-                <li><%= r.title %></li>
+                <li><%= link_to r.title, r %></li>
               <% end %>
             <% end %>
           </p>
@@ -119,7 +119,6 @@
               <% end %>
             </div>
           </div>
-
         </div>
       </div>
     </div>

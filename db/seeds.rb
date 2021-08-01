@@ -7,12 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# Remotiv API
+
 
 require 'uri'
 require 'net/http'
 require 'json'
 
+# Remotiv API
 uri = URI('https://remotive.io/api/remote-jobs')
 res = Net::HTTP.get_response(uri)
 jobs = JSON.parse(res.body)["jobs"]
@@ -76,3 +77,20 @@ if res.is_a?(Net::HTTPSuccess)
     end
   end
 end
+
+
+# Jooble API
+# url = 'https://jooble.org/api/'
+# key = '305c58b8-7433-4355-9d8d-ba469eb1af79'
+# #create uri for request
+# uri = URI.parse(url + key)
+# #prepare post data
+# post_args = { 'keywords': 'it', 'location': 'Bern'}
+# #send request to the server
+# http = Net::HTTP.new(uri.host, uri.port)
+# #for https
+# http.use_ssl = true
+# request = Net::HTTP::Post.new(uri.request_uri, 'Content-Type' => 'application/json')
+# request.body = post_args.to_json
+# #send request to the server
+# response = http.request(request)

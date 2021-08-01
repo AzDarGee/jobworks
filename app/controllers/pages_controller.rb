@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   def home
+    @featured_jobs = Job.all.limit(10)
+    @curated_jobs = Job.all.limit(10)
 
   end
 

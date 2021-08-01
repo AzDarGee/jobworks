@@ -16,7 +16,9 @@ class ApplicationController < ActionController::Base
                                         :terms_of_service,
                                         :password,
                                         :password_confirmation,
-                                        :image
+                                        :image,
+                                        :address,
+                                        :social_media_links
                                       ])
     devise_parameter_sanitizer.permit(:account_update,
                                       keys: [
@@ -28,7 +30,9 @@ class ApplicationController < ActionController::Base
                                         :terms_of_service,
                                         :password,
                                         :password_confirmation,
-                                        :image
+                                        :image,
+                                        :address,
+                                        :social_media_links
                                       ])
   end
 end
