@@ -31,9 +31,12 @@ class Job < ApplicationRecord
             :job_author,
             :industry,
             :start_date,
+            :status,
+            :num_employees,
             :salary_range, :presence => true
 
   JOB_TYPES = ["Full-Time", "Part-Time", "Contract", "Freelance", "Internship"]
+  JOB_STATUS = ["Active", "Archived"]
   SALARY_RANGE = [
     "$20,000 - $50,000",
     "$50,000 - $75,000",

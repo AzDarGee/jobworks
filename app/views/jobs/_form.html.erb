@@ -60,6 +60,17 @@
 
           <div class="row">
             <div class="col">
+              <%= form.select( :num_employees, options_for_select(Job::NUM_EMPLOYEES, @job.num_employees), { :prompt => true }, required: true, class: "form-control" ) %>
+              <%= form.label :num_employees, "Employees", class: "form-label" %>
+            </div>
+            <div class="col">
+              <%= form.select( :status, options_for_select(Job::JOB_STATUS, @job.status), { :prompt => true }, required: true, class: "form-control" ) %>
+              <%= form.label :status, "Job status", class: "form-label" %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
               <!-- Description -->
               <div class="form-outline">
                 <%= form.rich_text_area :description, class: "form-control customized-min-height", input_html: { rows: "10" }, required: true %>
