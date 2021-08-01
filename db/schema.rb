@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_01_195646) do
+ActiveRecord::Schema.define(version: 2021_08_01_204141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 2021_08_01_195646) do
     t.string "industry"
     t.integer "company_id"
     t.tsvector "searchable", default: -> { "(setweight(to_tsvector('english'::regconfig, (COALESCE(title, ''::character varying))::text), 'A'::\"char\") || setweight(to_tsvector('english'::regconfig, COALESCE(description, ''::text)), 'B'::\"char\"))" }
+    t.string "status"
+    t.integer "num_employees"
     t.index ["searchable"], name: "index_jobs_on_searchable", using: :gin
   end
 

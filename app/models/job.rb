@@ -34,7 +34,6 @@ class Job < ApplicationRecord
             :salary_range, :presence => true
 
   JOB_TYPES = ["Full-Time", "Part-Time", "Contract", "Freelance", "Internship"]
-
   SALARY_RANGE = [
     "$20,000 - $50,000",
     "$50,000 - $75,000",
@@ -73,6 +72,14 @@ class Job < ApplicationRecord
     "Space",
     "Technology",
     "Telecom"
+  ]
+  NUM_EMPLOYEES = [
+    "1 - 10",
+    "10 - 50",
+    "50 - 200",
+    "200 - 1,000",
+    "1,000 - 10,000",
+    "10,000 +"
   ]
 
   def coordinates
