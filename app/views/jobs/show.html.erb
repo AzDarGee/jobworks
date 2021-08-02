@@ -59,22 +59,18 @@
                 </div>
                 <div class="col">
                   <span class="parent-likes">
-                    <span class="like-count">
-                      Likes <%= @job.get_likes.size %>
-                    </span>
-                    <% if current_user.liked?(@job) %>
-                      <div>
+                    <span class="like-count" <%= @job.id %>>
+                      <% if current_user.liked?(@job) %>
                         <%= link_to like_job_path(@job, 'unlike'), class: 'liked-btn', method: :put, remote: true do %>
-                          Liked
+                          <i class="fas fa-heart"> <%= @job.get_likes.size %></i>
                         <% end %>
-                      </div>
-                    <% else %>
-                      <div>
+                      <% end %>
+                      <% if !current_user.liked?(@job) %>
                         <%= link_to like_job_path(@job, 'like'), class: 'like-btn', method: :put, remote: true do %>
-                          Like
+                          <i class="far fa-heart"> <%= @job.get_likes.size %></i>
                         <% end %>
-                      </div>
-                    <% end %>
+                      <% end %>
+                    </span>
                   </span>
                 </div>
               </div>

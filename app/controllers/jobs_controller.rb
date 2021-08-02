@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_job, only: %i[ show edit update destroy delete_upload like ]
   before_action :authenticate_user!, except: [:index, :show]
+  respond_to :js, :html, :json
 
   def index
     if params[:search]
@@ -109,7 +110,6 @@ class JobsController < ApplicationController
     elsif params[:format] == 'unlike'
       @job.unliked_by(current_user)
     end
-    redirect_to @job
   end
 
   private
