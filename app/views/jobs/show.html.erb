@@ -58,7 +58,24 @@
                   <span>Views: </span>
                 </div>
                 <div class="col">
-                  <span>Likes: </span>
+                  <span class="parent-likes">
+                    <span class="like-count">
+                      Likes <%= @job.get_likes.size %>
+                    </span>
+                    <% if current_user.liked?(@job) %>
+                      <div>
+                        <%= link_to like_job_path(@job, 'unlike'), class: 'liked-btn', method: :put, remote: true do %>
+                          Liked
+                        <% end %>
+                      </div>
+                    <% else %>
+                      <div>
+                        <%= link_to like_job_path(@job, 'like'), class: 'like-btn', method: :put, remote: true do %>
+                          Like
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </span>
                 </div>
               </div>
 

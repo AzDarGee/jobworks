@@ -95,9 +95,10 @@
             </div>
 
             <div class="row">
-              <div class="col">
-                BENEFITS
-                <br>
+              <div class="col-md-2 align-self-md-center text-center">
+                <strong>Benefits</strong>
+              </div>
+              <div class="col-md-10">
                 <% Job::BENEFITS.each do |benefit| %>
                   <div class="benefit d-inline-block p-2">
                     <%= form.check_box :benefits, { :multiple => true, checked: benefit } %>
@@ -126,6 +127,7 @@
                 <%= form.label :images, class: "form-label" %>
               </div>
             </div>
+
             <div class="row mb-3">
               <div class="col">
                 <output id="list"></output>

@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: %i[ show edit update destroy delete_upload ]
+  before_action :set_job, only: %i[ show edit update destroy delete_upload like ]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -101,6 +101,15 @@ class JobsController < ApplicationController
     attachments = ActiveStorage::Attachment.where(id: params[:upload_id])
     attachments.map(&:purge)
     redirect_to edit_job_path(@job), notice: 'Image deleted.'
+  end
+
+  def like
+    if params[:format] == 'like'
+      @job.liked_by(current_user)
+    elsif params[:format] == 'unlike'
+      @job.unliked_by(current_user)
+    end
+    redirect_to @job
   end
 
   private

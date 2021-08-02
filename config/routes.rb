@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :jobs do
     member do
       delete "delete_upload/:upload_id", action: :delete_upload, as: :delete_upload
+      put "like" => "jobs#like"
     end
   end
   get "my_jobs", to: 'jobs#my_jobs', as: :my_jobs

@@ -21,6 +21,7 @@ gem 'trix'
 gem 'image_processing'
 gem 'geocoder'
 gem 'acts-as-taggable-on'
+gem 'acts_as_votable'
 gem 'pg_search'
 
 

@@ -15,4 +15,8 @@ class User < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
+  # Votable / Like / unlike
+  acts_as_voter
+
+
 end

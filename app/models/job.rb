@@ -11,9 +11,13 @@ class Job < ApplicationRecord
                     }
                   }
 
+  # TAGS
   acts_as_taggable_on :tags
   ActsAsTaggableOn.delimiter = ' '
   ActsAsTaggableOn.force_lowercase = true
+
+  # LIKE / UNLIKE / VOTABLE
+  acts_as_votable
 
   has_many_attached :images, service: :amazon
   has_one_attached :company_logo, service: :amazon
