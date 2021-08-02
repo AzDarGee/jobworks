@@ -4,19 +4,19 @@
   <div class="col-md-10">
     <div class="card">
       <div class="col-md-12">
-        <% if !@job.images.empty? %>
+        <% if @job.images.attached? %>
           <div id="carouselExampleInterval" class="carousel slide" data-mdb-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active" data-mdb-interval="2000">
                 <%= image_tag @job.images.first, class: "d-block w-100" %>
               </div>
-              <% @job.images.attached? %>
-                <% @job.images.each_with_index do |image, index| %>
-                  <div class="carousel-item" data-mdb-interval="2000">
-                    <%= image_tag image, class: "d-block w-100" %>
-                  </div>
-                <% end %>
+
+              <% @job.images.each_with_index do |image, index| %>
+                <div class="carousel-item" data-mdb-interval="2000">
+                  <%= image_tag image, class: "d-block w-100" %>
+                </div>
               <% end %>
+
             </div>
             <button
               class="carousel-control-prev"
@@ -52,14 +52,15 @@
                 </a>
               </span>
               <br>
-<!--              <div class="row">-->
-<!--                <div class="col">-->
-<!--                  <span>Views: </span>-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                  <span>Likes: </span>-->
-<!--                </div>-->
-<!--              </div>-->
+
+              <div class="row">
+                <div class="col">
+                  <span>Views: </span>
+                </div>
+                <div class="col">
+                  <span>Likes: </span>
+                </div>
+              </div>
 
               <h1 class="mb-0" style="display: inline"><%= @job.title %></h1> | <h5 style="display: inline"><%= @job.industry %></h5>
               <h6><%= "Remote |" if @job.remote_ok %> <%= @job.location %></h6>
@@ -71,9 +72,9 @@
               <%= link_to "Apply Here", "#{@job.apply_url.to_s}", target: "_blank", class: 'btn-link show-apply-here' %>
               <div class="show-div-tag-cloud">
                 <% @job.tag_list.each do |tag| %>
-                <span class="show-tag-cloud">
-                  <%= link_to tag, tag_path(tag: tag) %>
-                </span>
+                  <span class="show-tag-cloud">
+                    <%= link_to tag, tag_path(tag: tag) %>
+                  </span>
                 <% end %>
               </div>
             </div>
@@ -127,5 +128,3 @@
 
   <div class="col-md-1"></div>
 </div>
-
-

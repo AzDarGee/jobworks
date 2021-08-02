@@ -1,166 +1,195 @@
 <%= form_for @job, html: { multipart: true }, local: true do |form| %>
-
-
-<div class="row m-4">
-  <div class="col"></div>
-  <div class="col-md-10">
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title"><%= action_name.capitalize %> Job</h2>
-        <%= form.check_box :remote_ok %>
-        <%= form.label :remote_ok, "Remote", class: "form-label" %>
-        <div class="card-text">
-          <div class="row">
-            <div class="col">
-              <!-- Title input -->
-              <div class="form-outline">
-                <%= form.text_field :title, class: "form-control", required: true %>
-                <%= form.label :title, class: "form-label" %>
-              </div>
-            </div>
-            <div class="col">
-              <!-- URL input -->
-              <div class="form-outline">
-                <%= form.text_field :url, class: "form-control", required: true %>
-                <%= form.label :url, "Website", class: "form-label" %>
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-outline">
-                <%= form.select( :job_type, options_for_select(Job::JOB_TYPES, @job.job_type), { :prompt => true }, required: true, class: "form-control") %>
-                <%= form.label :job_type, class: "form-label" %>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <%= form.select( :salary_range, options_for_select(Job::SALARY_RANGE, @job.salary_range), { :prompt => true }, required: true, class: "form-control" ) %>
-              <%= form.label :salary_range, class: "form-label" %>
-            </div>
-            <div class="col">
-              <%= form.date_field :start_date, required: true, class: "form-control" %>
-              <%= form.label :start_date, class: "form-label" %>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <!-- Tag List -->
-              <div class="form-outline">
-                <%= form.text_field :tag_list, placeholder: "Tags (separated by spaces)", class: "form-control", required: true %>
-                <%= form.label :tag_list, "Tags | ", class: "form-label" %>
-
-                <% @job.most_used_tags.each do |tag| %>
-                  <%= tag.name.capitalize %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <%= form.select( :num_employees, options_for_select(Job::NUM_EMPLOYEES, @job.num_employees), { :prompt => true }, required: true, class: "form-control" ) %>
-              <%= form.label :num_employees, "Employees", class: "form-label" %>
-            </div>
-            <div class="col">
-              <%= form.select( :status, options_for_select(Job::JOB_STATUS, @job.status), { :prompt => true }, required: true, class: "form-control" ) %>
-              <%= form.label :status, "Job status", class: "form-label" %>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <!-- Description -->
-              <div class="form-outline">
-                <%= form.rich_text_area :description, class: "form-control customized-min-height", input_html: { rows: "10" }, required: true %>
-                <%= form.label :description, class: "form-label" %>
-              </div>
-            </div>
-          </div>
-
-          <div class="row mb-2 p-2">
-            <div class="col">
-              <% if @job.images.attached? %>
-                <% @job.images.each do |image| %>
-                  <%= link_to delete_upload_job_url(@job, image.id), method: :delete, data: { confirm: 'Are you sure you want to delete this image?' }, class:"delete_image" do %>
-                    <i class="fa fa-times">
-                    <%= image_tag image.variant(resize_to_limit: [200, 200]), class: "mb-2" %>
-                    </i>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <%= form.file_field :images, multiple: true, direct_upload: true, class: "form-control job-images" %>
-              <%= form.label :images, class: "form-label" %>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col">
-              <output id="list"></output>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <%= form.text_field :location, class: "form-control", required: true %>
-              <%= form.label :location, class: "form-label" %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <%= form.text_field :apply_url, class: "form-control", required: true %>
-              <%= form.label :apply_url, class: "form-label" %>
-            </div>
-            <div class="col">
-              <%= form.text_field :job_author, class: "form-control", required: true %>
-              <%= form.label :job_author, "Company Name", class: "form-label" %>
-            </div>
-            <div class="col">
-              <%= form.select( :industry, options_for_select(Job::INDUSTRIES, @job.industry), { :prompt => true }, required: true, class: "form-control" ) %>
-              <%= form.label :industry, class: "form-label" %>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <%= render 'payment' %>
-          </div>
-        </div>
-
-        <div class="row mb-2">
-          <div class="col">
-            <%= form.submit "Save Job", class: "btn btn-primary save-btn-jobs" %>
-          </div>
-        </div>
-
-        <div class="row mb-2">
-          <div class="col">
-            <div class="back-btn-jobs p-2 text-center">
-              <%= link_to 'Back', jobs_path, class: "btn-link back-btn-jobs" %>
-            </div>
-          </div>
-          <% if (action_name == 'edit') %>
-            <% if (current_user.id == @job.user_id) || (current_user.is_admin) %>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-md-10">
+      <% if @job.errors.any? %>
+        <% @job.errors.full_messages.each do |message|%>
+          <h3><%= message %> </h3>
+        <%end%>
+      <% end %>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row m-4">
+    <div class="col"></div>
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title"><%= action_name.capitalize %> Job</h2>
+          <%= form.check_box :remote_ok %>
+          <%= form.label :remote_ok, "Remote", class: "form-label" %>
+          <div class="card-text">
+            <div class="row">
               <div class="col">
-                <div class="delete-btn-jobs p-2 text-center">
-                  <%= link_to 'Delete', job_path(@job), :confirm => "Are you sure?", :method => :delete, class: "btn-link delete-btn-jobs" %>
+                <%= form.file_field :company_logo, direct_upload: true, class: "form-control job-company-logo" %>
+                <%= form.label :company_logo, "Company Logo", class: "form-label" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <!-- Title input -->
+                <div class="form-outline">
+                  <%= form.text_field :title, class: "form-control", required: true %>
+                  <%= form.label :title, class: "form-label" %>
                 </div>
               </div>
+              <div class="col">
+                <!-- URL input -->
+                <div class="form-outline">
+                  <%= form.text_field :url, class: "form-control", required: true %>
+                  <%= form.label :url, "Website", class: "form-label" %>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <%= form.select( :job_type, options_for_select(Job::TYPES, @job.job_type), { :prompt => true }, required: true, class: "form-control") %>
+                  <%= form.label :job_type, class: "form-label" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <%= form.select( :salary_range, options_for_select(Job::SALARY_RANGE, @job.salary_range), { :prompt => true }, required: true, class: "form-control" ) %>
+                <%= form.label :salary_range, class: "form-label" %>
+              </div>
+              <div class="col">
+                <%= form.date_field :start_date, required: true, class: "form-control" %>
+                <%= form.label :start_date, class: "form-label" %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <!-- Tag List -->
+                <div class="form-outline">
+                  <%= form.text_field :tag_list, placeholder: "Tags (separated by spaces)", class: "form-control", required: true %>
+                  <%= form.label :tag_list, "Tags | ", class: "form-label" %>
+
+                  <% @job.most_used_tags.each do |tag| %>
+                    <%= tag.name.capitalize %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <%= form.select( :num_employees, options_for_select(Job::NUM_EMPLOYEES, @job.num_employees), { :prompt => true }, required: true, class: "form-control" ) %>
+                <%= form.label :num_employees, "Employees", class: "form-label" %>
+              </div>
+              <div class="col">
+                <%= form.select( :status, options_for_select(Job::STATUS, @job.status), { :prompt => true }, required: true, class: "form-control" ) %>
+                <%= form.label :status, "Job status", class: "form-label" %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <!-- Description -->
+                <div class="form-outline">
+                  <%= form.rich_text_area :description, class: "form-control customized-min-height", input_html: { rows: "10" }, required: true %>
+                  <%= form.label :description, class: "form-label" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                BENEFITS
+                <br>
+                <% Job::BENEFITS.each do |benefit| %>
+                  <div class="benefit d-inline-block p-2">
+                    <%= form.check_box :benefits, { :multiple => true, checked: benefit } %>
+                    <%= form.label :benefits, benefit, class: "form-label" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row mb-2 p-2">
+              <div class="col">
+                <% if @job.images.attached? %>
+                  <% @job.images.each do |image| %>
+                    <%= link_to delete_upload_job_url(@job, image.id), method: :delete, data: { confirm: 'Are you sure you want to delete this image?' }, class:"delete_image" do %>
+                      <i class="fa fa-times">
+                      <%= image_tag image.variant(resize_to_limit: [200, 200]), class: "mb-2" %>
+                      </i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <%= form.file_field :images, multiple: true, direct_upload: true, class: "form-control job-images" %>
+                <%= form.label :images, class: "form-label" %>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <output id="list"></output>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <%= form.text_field :location, class: "form-control", required: true %>
+                <%= form.label :location, class: "form-label" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <%= form.text_field :apply_url, class: "form-control", required: true %>
+                <%= form.label :apply_url, class: "form-label" %>
+              </div>
+              <div class="col">
+                <%= form.text_field :job_author, class: "form-control", required: true %>
+                <%= form.label :job_author, "Company Name", class: "form-label" %>
+              </div>
+              <div class="col">
+                <%= form.select( :industry, options_for_select(Job::INDUSTRIES, @job.industry), { :prompt => true }, required: true, class: "form-control" ) %>
+                <%= form.label :industry, class: "form-label" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <%#= render 'payment' %>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col">
+              <%= form.submit "Save Job", class: "btn btn-primary save-btn-jobs" %>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col">
+              <div class="back-btn-jobs p-2 text-center">
+                <%= link_to 'Back', jobs_path, class: "btn-link back-btn-jobs" %>
+              </div>
+            </div>
+            <% if (action_name == 'edit') %>
+              <% if (current_user.id == @job.user_id) || (current_user.is_admin) %>
+                <div class="col">
+                  <div class="delete-btn-jobs p-2 text-center">
+                    <%= link_to 'Delete', job_path(@job), :confirm => "Are you sure?", :method => :delete, class: "btn-link delete-btn-jobs" %>
+                  </div>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
+    <div class="col"></div>
   </div>
-  <div class="col"></div>
-</div>
-
 <% end %>
+
+
 
 
 

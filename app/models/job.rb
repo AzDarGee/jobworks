@@ -16,6 +16,7 @@ class Job < ApplicationRecord
   ActsAsTaggableOn.force_lowercase = true
 
   has_many_attached :images, service: :amazon
+  has_one_attached :company_logo, service: :amazon
   has_rich_text :description
   belongs_to :user
 
@@ -33,10 +34,27 @@ class Job < ApplicationRecord
             :start_date,
             :status,
             :num_employees,
-            :salary_range, :presence => true
+            :salary_range,
+            :status,
+            :company_logo, :presence => true
 
-  JOB_TYPES = ["Full-Time", "Part-Time", "Contract", "Freelance", "Internship"]
-  JOB_STATUS = ["Active", "Archived"]
+  # JOB CONSTANTS
+  TYPES = [
+    "Full-Time",
+    "Part-Time",
+    "Contract",
+    "Freelance",
+    "Internship",
+    "Temporary",
+    "Comission",
+    "Volunteer",
+    "Casual",
+    "Apprenticeship"
+  ]
+  STATUS = [
+    "Active",
+    "Archived"
+  ]
   SALARY_RANGE = [
     "$20,000 - $50,000",
     "$50,000 - $75,000",
@@ -84,6 +102,34 @@ class Job < ApplicationRecord
     "1,000 - 10,000",
     "10,000 +"
   ]
+  BENEFITS = [
+    "Extended Health Care",
+    "Dental Care",
+    "Vision Care",
+    "RRSP Match",
+    "Unlimited Paid Time Off (UPTO)",
+    "Casual Dress",
+    "Life Insurance",
+    "Disability Insurance",
+    "Flexible Schedule",
+    "Company Pension",
+    "On-site Parking",
+    "Work From Home",
+    "Discounted or Free Food",
+    "Wellness Program",
+    "Profit Sharing",
+    "Company Events",
+    "On-site Gym",
+    "Company Car",
+    "Tuition Reimbursement",
+    "Stock Options",
+    "On-site Childcare",
+    "Employee Assistance Program",
+    "Commuter Benefits",
+    "Employee Stock Purchase Plan",
+    "Store Discount",
+    "None"
+  ]
 
   def coordinates
     [longitude, latitude]
@@ -117,7 +163,6 @@ class Job < ApplicationRecord
   end
 
   def most_used_tags
-    #returns most and least used tags
-    ActsAsTaggableOn::Tag.most_used(10)
+    ActsAsTaggableOn::Tag.most_used(5)
   end
 end

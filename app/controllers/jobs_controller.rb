@@ -122,6 +122,10 @@ class JobsController < ApplicationController
                                   :industry,
                                   :search,
                                   :tag_list,
+                                  :company_logo,
+                                  :benefits,
+                                  :num_employees,
+                                  :status,
                                   images: [])
     end
 
