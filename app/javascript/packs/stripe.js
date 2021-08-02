@@ -22,8 +22,10 @@ document.addEventListener("turbolinks:load", function() {
 
     const card = elements.create('card', {style: style});
 
-    card.mount('#card-element');
-
+    if ($('#card-element')) {
+        card.mount('#card-element');
+    }
+    
     card.addEventListener('change', ({error}) => {
         const displayError = document.getElementById('card-errors');
         if (error) {

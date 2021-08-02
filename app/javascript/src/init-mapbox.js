@@ -1,6 +1,6 @@
+import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import mapboxgl from 'mapbox-gl';
 
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
@@ -21,23 +21,17 @@ const initMapbox = () => {
         });
 
         // Add the control to the map.
-        map.addControl(
-            new MapboxGeocoder({
+        map.addControl(new MapboxGeocoder({
                 accessToken: mapboxgl.accessToken,
                 mapboxgl: mapboxgl
-            }),
-            'bottom-left'
-        );
-
+            }), 'bottom-left');
         map.addControl(new mapboxgl.FullscreenControl(), 'bottom-left');
-
         map.addControl(new mapboxgl.GeolocateControl({
             positionOptions: {
                 enableHighAccuracy: true
             },
             trackUserLocation: true
-        }),
-        'bottom-left');
+        }), 'bottom-left');
 
         map.on('load', function() {
             const jobs = JSON.parse(mapElement.dataset.jobs);
@@ -136,6 +130,8 @@ const initMapbox = () => {
                     .setLngLat(coordinates)
                     .setHTML(infoWindow)
                     .addTo(map);
+
+                spiderifier.unspiderfy();
             });
 
             map.on('mouseenter', 'unclustered-point', function () {
