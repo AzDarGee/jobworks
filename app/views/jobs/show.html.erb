@@ -40,6 +40,15 @@
         <% end %>
       </div>
 
+      <div class="row">
+        <div class="col">
+          <div id="show-map"
+               data-jobs="<%= @geojson.to_json %>"
+               data-mapbox-api-key="<%= Rails.application.credentials.dig(:mapbox, :public_api_key) %>">
+          </div>
+        </div>
+      </div>
+
       <div class="card-body">
         <div class="card-text">
           <div class="row">
@@ -96,15 +105,6 @@
             <div class="col">
               <div class="show-job-created">
                 Posted: <%= @job.created_at.strftime("%B %d, %Y") %>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <div id="show-map"
-                   data-jobs="<%= @geojson.to_json %>"
-                   data-mapbox-api-key="<%= Rails.application.credentials.dig(:mapbox, :public_api_key) %>">
               </div>
             </div>
           </div>
