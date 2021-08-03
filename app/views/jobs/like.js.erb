@@ -1,14 +1,2 @@
-$('.liked-btn').on('ajax:success', function() {
-    $(this).parent().parent().find('.like-count')
-      .html("<a class=\"like-btn\" data-remote=\"true\" rel=\"nofollow\" data-method=\"put\"" +
-        "href=\"<%= like_job_path(@job, 'like') %>\">" +
-        "<i class=\"far fa-heart\"> <%= @job.get_likes.size %></i></a>"
-      );
-})
-$('.like-btn').on('ajax:success', function() {
-    $(this).parent().parent().find('.like-count')
-      .html("<a class=\"unlike-btn\" data-remote=\"true\" rel=\"nofollow\" data-method=\"put\"" +
-        "href=\"<%= like_job_path(@job, 'unlike') %>\">" +
-        "<i class=\"fas fa-heart\"> <%= @job.get_likes.size %></i></a>"
-      );
-})
+$('#like-count').html("<%= j render 'jobs/likes', job: @job %>");
+$('#like-link').html("<%= j render 'jobs/like_link', job: @job %>");

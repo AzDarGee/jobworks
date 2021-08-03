@@ -68,17 +68,22 @@
                 </div>
                 <div class="col">
                   <span class="parent-likes">
-                    <span class="like-count" <%= @job.id %>>
-                      <% if current_user.liked?(@job) %>
-                        <%= link_to like_job_path(@job, 'unlike'), class: 'liked-btn', method: :put, remote: true do %>
-                          <i class="fas fa-heart"> <%= @job.get_likes.size %></i>
-                        <% end %>
-                      <% end %>
-                      <% if !current_user.liked?(@job) %>
-                        <%= link_to like_job_path(@job, 'like'), class: 'like-btn', method: :put, remote: true do %>
-                          <i class="far fa-heart"> <%= @job.get_likes.size %></i>
-                        <% end %>
-                      <% end %>
+                    <span id="like-count" job-ib="<%= @job.id %>">
+                      <%# if current_user.liked?(@job) %>
+                        <%#= link_to like_job_path(@job, 'unlike'), id: 'liked-btn', method: :put, remote: true do %>
+<!--                          <i class="fas fa-heart"> <%#= @job.get_likes.size %></i>-->
+                        <%# end %>
+                      <%# end %>
+                      <%= render 'jobs/likes', job: @job %>
+
+                      <%# if !current_user.liked?(@job) %>
+                        <%#= link_to like_job_path(@job, 'like'), id: 'like-btn', method: :put, remote: true do %>
+<!--                          <i class="far fa-heart"> <%#= @job.get_likes.size %></i>-->
+                        <%# end %>
+                      <%# end %>
+                    </span>
+                    <span id="like-link">
+                      <%= render 'jobs/like_link', job: @job %>
                     </span>
                   </span>
                 </div>

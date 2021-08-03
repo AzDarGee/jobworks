@@ -105,10 +105,10 @@ class JobsController < ApplicationController
   end
 
   def like
-    if params[:format] == 'like'
-      @job.liked_by(current_user)
-    elsif params[:format] == 'unlike'
+    if current_user.voted_for? @job
       @job.unliked_by(current_user)
+    else
+      @job.liked_by(current_user)
     end
   end
 
