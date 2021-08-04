@@ -1,5 +1,22 @@
 document.addEventListener("turbolinks:load", function() {
 
+    (function() {
+        $(function() {
+            if ($('.pagination').length && $('#index-job').length) {
+                $(window).scroll(function() {
+                    var url;
+                    url = $('.pagination .next_page').attr('href');
+                    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+                        $('.pagination').text('Loading more job posts...');
+                        return $.getScript(url);
+                    }
+                });
+                return $(window).scroll;
+            }
+        });
+
+    }).call(this);
+
     var instrumentImage = document.querySelector('.job-images');
 
     function handleFileSelect(evt) {
