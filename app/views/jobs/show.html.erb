@@ -72,7 +72,12 @@
         <div class="card-text">
           <div class="row">
             <div class="col">
-              <span class="show-job-author"><%= @job.job_author %></span>
+              <span class="show-job-author">
+                <% if @job.company_logo.attached? %>
+                  <span><%= image_tag @job.company_logo.variant(resize_to_limit: [50, 50]) %></span>
+                <% end %>
+                <%= @job.job_author %>
+              </span>
               <span class="show-website">
                 <% job_url = @job.url.to_s %>
                 <a href="<%= @job.url.to_s %>" target="_blank">
@@ -104,7 +109,7 @@
               </div>
             </div>
           </div>
-
+          <hr>
           <p>
             <%= @job.description %>
           </p>

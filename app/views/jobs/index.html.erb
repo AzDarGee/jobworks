@@ -1,12 +1,11 @@
 <div class="row m-2">
     <%= render partial: "shared/search_form" %>
 
-    <% @jobs.each_slice(4) do |jobs| %>
+    <% @jobs.each_slice(3) do |jobs| %>
       <div class="row">
         <% jobs.each do |job| %>
           <div class="col">
             <div class="card p-0 mb-4">
-              <%# binding.pry %>
               <% if job.images.attached? %>
                 <%= link_to job do %>
                   <%= image_tag job.images.first, class: "card-img-top" %>
@@ -14,18 +13,44 @@
               <% end %>
               <div class="card-body">
                 <div class="row">
-                  <div class="col">
-                    <% if job.company_logo.attached? %>
-                      <%= image_tag job.company_logo.variant(resize_to_limit: [50, 50]) %>
-                    <% end %>
+                  <div class="col p-1">
                     <h1 class="card-company" style="display: inline-block;"><%= job.job_author %></h1>
+                    <% if job.company_logo.attached? %>
+                      <%= image_tag job.company_logo.variant(resize_to_limit: [50, 50]), style: "float: left;" %>
+                    <% end %>
                   </div>
-
                 </div>
 
-                <h5 class="card-title"><%= link_to job.title, job %></h5>
-                <h6>Images: <%= job.images.count if job.images %></h6>
-                <h6><%= job.salary_range %></h6>
+                <div class="row p-1">
+                  <div class="col">
+                    <h5 class="card-title"><%= link_to job.title, job %></h5>
+                  </div>
+                </div>
+
+                <div class="row p-1">
+                  <div class="col">
+                    <span class="parent-likes">
+                      <span>
+                      <i class="far fa-eye">
+                        <%= job.impressionist_count %>
+                      </i>
+                      </span>
+                      <br>
+                      <span class="likes">
+                        <i class="far fa-heart">
+                          <%= job.get_upvotes.size %>
+                        </i>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="row p-1">
+                  <div class="col">
+                    <h6><%= job.salary_range %></h6>
+                  </div>
+                </div>
+
                 <p class="card-text">
                   <div class="show-jobs-description">
                     <%= job.description.to_plain_text.truncate(250) %>

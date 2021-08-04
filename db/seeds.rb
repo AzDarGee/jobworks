@@ -14,7 +14,7 @@ require 'net/http'
 require 'json'
 
 # Remotiv API
-uri = URI('https://remotive.io/api/remote-jobs?limit=10')
+uri = URI('https://remotive.io/api/remote-jobs?limit=100')
 res = Net::HTTP.get_response(uri)
 jobs = JSON.parse(res.body)["jobs"]
 
@@ -36,7 +36,8 @@ if res.is_a?(Net::HTTPSuccess)
         description: job['description'].to_s,
         tag_list: job['tags'],
         start_date: Time.now + 14.days,
-        apply_url: job['url']
+        apply_url: job['url'],
+        status: "Active"
       )
       if !job['company_logo_url'].nil?
         url = URI.parse(job['company_logo_url'])
