@@ -30,20 +30,20 @@ class Job < ApplicationRecord
   geocoded_by :location
   after_validation :geocode, if: :location_changed?
 
-  # validates :title,
-  #           :url,
-  #           :apply_url,
-  #           :description,
-  #           :job_type,
-  #           :location,
-  #           :job_author,
-  #           :industry,
-  #           :start_date,
-  #           :status,
-  #           :num_employees,
-  #           :salary_range,
-  #           :status,
-  #           :company_logo, :presence => true
+  validates :title,
+            :url,
+            :apply_url,
+            :description,
+            :job_type,
+            :location,
+            :job_author,
+            :industry,
+            :start_date,
+            :status,
+            :num_employees,
+            :salary_range,
+            :status,
+            :company_logo, :presence => true
 
   # JOB CONSTANTS
   TYPES = [
