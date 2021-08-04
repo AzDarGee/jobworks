@@ -9,7 +9,7 @@ class JobsController < ApplicationController
     elsif params[:tag]
       @jobs = Job.tagged_with(params[:tag])
     else
-      @jobs = Job.all.limit(10)
+      @jobs = Job.all.limit(10).order(created_at: :desc)
     end
     @tags = Job.tag_counts_on(params[:tag])
   end
