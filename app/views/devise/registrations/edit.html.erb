@@ -16,18 +16,21 @@
                     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
                       <%= render "devise/shared/error_messages", resource: resource %>
 
-                      <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="d-flex flex-row align-items-center">
                         <div class="form-outline flex-fill mb-0">
-                          <div class="row">
-                            <div class="col-md-12 edit-profile-picture">
-                              <% if current_user.image.attached? %>
-                                <%= image_tag current_user.image.url %> <br>
-                              <% end %>
-                            </div>
+                          <div class="col-md-12 edit-profile-picture">
+                            <% if current_user.image.attached? %>
+                              <%= image_tag current_user.image.url %> <br>
+                            <% end %>
                           </div>
+                        </div>
+                      </div>
 
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user-circle fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
                           <%= f.file_field :image, autofocus: true, autocomplete: "Image", placeholder: "Profile Picture", id:"signup-image", class: "form-control" %>
-                          <%= f.label :image, "Profile Picture", for: "signup-image", class: "form-label" %>
+                          <%= f.label :image, "Profile Picture", for: :image, class: "form-label" %>
                         </div>
                       </div>
 
@@ -94,7 +97,7 @@
                         <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                           <%= f.password_field :current_password, autocomplete: "Current password", placeholder: "Current password", id: "signup-current-password", class: "form-control" %>
-                          <%= f.label :current_password, class: "form-label" %><i>(we need your current password to confirm your changes)</i>
+                          <%= f.label :current_password, class: "form-label" %>
                         </div>
                       </div>
 
@@ -116,8 +119,6 @@
                             <%= f.radio_button :role, 'Employer' %> Employer
                           </div>
                         </div>
-
-
                       </div>
 
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

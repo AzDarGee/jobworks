@@ -18,5 +18,5 @@ class User < ApplicationRecord
   # Votable / Like / unlike
   acts_as_voter
 
-
+  validates :email, :username, uniqueness: true
 end
