@@ -19,4 +19,5 @@ class User < ApplicationRecord
   acts_as_voter
 
   validates :email, :username, uniqueness: true
+  validates :terms_of_service, presence: true
 end

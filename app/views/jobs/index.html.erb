@@ -13,7 +13,16 @@
                 <% end %>
               <% end %>
               <div class="card-body">
-                <h3 class="card-company"><%= job.job_author %></h3>
+                <div class="row">
+                  <div class="col">
+                    <% if job.company_logo.attached? %>
+                      <%= image_tag job.company_logo.variant(resize_to_limit: [50, 50]) %>
+                    <% end %>
+                    <h1 class="card-company" style="display: inline-block;"><%= job.job_author %></h1>
+                  </div>
+
+                </div>
+
                 <h5 class="card-title"><%= link_to job.title, job %></h5>
                 <h6>Images: <%= job.images.count if job.images %></h6>
                 <h6><%= job.salary_range %></h6>
