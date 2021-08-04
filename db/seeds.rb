@@ -23,12 +23,12 @@ if res.is_a?(Net::HTTPSuccess)
   if user.is_admin
     jobs.each_with_index do |job, index|
       new_job = user.jobs.create(
-        title: job['title'],
+        title: job['title'].capitalize,
         url: job['url'],
-        job_author: job['company_name'],
+        job_author: job['company_name'].capitalize,
         industry: job['category'].capitalize,
         tags: job['tags'],
-        job_type: job['job_type'],
+        job_type: job['job_type'].capitalize,
         created_at: job['publication_date'],
         location: job['candidate_required_location'],
         remote_ok: false,

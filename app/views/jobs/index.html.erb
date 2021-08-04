@@ -14,7 +14,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col p-1">
-                    <h1 class="card-company" style="display: inline-block;"><%= job.job_author %></h1>
+                    <h1 class="card-company" style="display: inline-block;"><%= link_to job.job_author, job %></h1>
                     <% if job.company_logo.attached? %>
                       <%= image_tag job.company_logo.variant(resize_to_limit: [50, 50]), style: "float: left;" %>
                     <% end %>

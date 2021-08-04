@@ -20,15 +20,15 @@
           <%= form.label :remote_ok, "Remote", class: "form-label" %>
           <div class="card-text">
             <div class="row">
-              <div class="col-md-3">
-                <% if @job.company_logo.attached? %>
-                    <%= link_to delete_upload_job_url(@job, @job.company_logo.id), method: :delete, data: { confirm: 'Are you sure you want to delete this image?' }, class:"delete_image" do %>
-                      <i class="fa fa-times">
-                        <%= image_tag @job.company_logo.variant(resize_to_limit: [100, 100]), class: "mb-2" %>
-                      </i>
-                    <% end %>
-                <% end %>
-              </div>
+              <% if @job.company_logo.attached? %>
+                <div class="col-md-3">
+                  <%= link_to delete_upload_job_url(@job, @job.company_logo.id), method: :delete, data: { confirm: 'Are you sure you want to delete this image?' }, class:"delete_image" do %>
+                    <i class="fa fa-times">
+                      <%= image_tag @job.company_logo.variant(resize_to_limit: [100, 100]), class: "mb-2" %>
+                    </i>
+                  <% end %>
+                </div>
+              <% end %>
               <div class="col">
                 <%= form.file_field :company_logo, direct_upload: true, class: "form-control job-company-logo" %>
                 <%= form.label :company_logo, "Company Logo", class: "form-label" %>
