@@ -23,11 +23,13 @@ RUN apk add --update --virtual \
 
 WORKDIR /app
 COPY . /app/
+ENV RAILS_ROOT /app
 
 ENV BUNDLE_PATH /gems
 RUN gem install bundler
-RUN yarn install
 RUN bundle install
+RUN yarn install
+RUN RAILS_ENV=production bundle exec rails assets:precompile
 
 CMD bundle exec rake db:schema:load
 CMD bundle exec rake db:migrate --trace

@@ -36,6 +36,11 @@ group :development do
   gem 'listen'
   gem 'spring'
   gem 'pry'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
 
 group :test do
