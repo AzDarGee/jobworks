@@ -64,7 +64,7 @@
 
               <div class="row">
                 <div class="col">
-                  <span>Views: </span>
+                  <span>Views: <%= @job.impressionist_count %></span>
                 </div>
                 <div class="col">
                   <span class="parent-likes">
@@ -119,13 +119,13 @@
                 <%= link_to 'Back', jobs_path, class: "btn-link back-btn-jobs" %>
               </div>
             </div>
-            <div class="col">
-              <% if current_user.id == @job.user_id %>
+            <% if current_user.id == @job.user_id %>
+              <div class="col">
                 <div class="edit-btn-jobs p-2 text-center">
                   <%= link_to 'Edit', edit_job_path(@job), class: "btn-link edit-btn-jobs" %>
                 </div>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

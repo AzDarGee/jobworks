@@ -22,6 +22,7 @@ class JobsController < ApplicationController
   def show
     @related_jobs = @job.find_related_tags
     @geojson = build_geojson
+    impressionist(@job)
   end
 
   def new

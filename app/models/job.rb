@@ -19,6 +19,9 @@ class Job < ApplicationRecord
   # LIKE / UNLIKE / VOTABLE
   acts_as_votable
 
+  # Job Views / Impressions
+  is_impressionable
+
   has_many_attached :images, service: :amazon
   has_one_attached :company_logo, service: :amazon
   has_rich_text :description
@@ -27,20 +30,20 @@ class Job < ApplicationRecord
   geocoded_by :location
   after_validation :geocode, if: :location_changed?
 
-  validates :title,
-            :url,
-            :apply_url,
-            :description,
-            :job_type,
-            :location,
-            :job_author,
-            :industry,
-            :start_date,
-            :status,
-            :num_employees,
-            :salary_range,
-            :status,
-            :company_logo, :presence => true
+  # validates :title,
+  #           :url,
+  #           :apply_url,
+  #           :description,
+  #           :job_type,
+  #           :location,
+  #           :job_author,
+  #           :industry,
+  #           :start_date,
+  #           :status,
+  #           :num_employees,
+  #           :salary_range,
+  #           :status,
+  #           :company_logo, :presence => true
 
   # JOB CONSTANTS
   TYPES = [

@@ -14,7 +14,7 @@ require 'net/http'
 require 'json'
 
 # Remotiv API
-uri = URI('https://remotive.io/api/remote-jobs')
+uri = URI('https://remotive.io/api/remote-jobs?limit=10')
 res = Net::HTTP.get_response(uri)
 jobs = JSON.parse(res.body)["jobs"]
 
@@ -38,12 +38,15 @@ if res.is_a?(Net::HTTPSuccess)
         start_date: Time.now + 14.days,
         apply_url: job['url']
       )
-      if !job['company_logo_url'].nil?
-        url = URI.parse(job['company_logo_url'])
-        filename = File.basename(url.path)
-        file = URI.open(url)
-        new_job.images.attach(io: file, filename: filename)
-      end
+      # if !job['company_logo_url'].nil?
+      #   url = URI.parse(job['company_logo_url'])
+      #   filename = File.basename(url.path)
+      #   file = URI.open(url)
+      #   new_job.company_logo.attach(io: file, filename: filename)
+      # else
+      #   file = File.open(Rails.root.join('app/assets/images/computer-desk.jpeg'))
+      #   new_job.company_logo.attach(io: file, filename: 'default-logo-jobworks')
+      # end
       new_job.save
       # new_job = user.jobs.build
       # new_job.title = job['title']
@@ -70,7 +73,6 @@ if res.is_a?(Net::HTTPSuccess)
       # new_job.tag_list = job['tags']
       # new_job.start_date = Time.now + 14.days
       # new_job.apply_url = job['url']
-      # # binding.pry
       # new_job.save
 
       puts "#{index}: #{job['title']} : Done \n"

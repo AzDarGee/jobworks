@@ -23,6 +23,7 @@ gem 'geocoder'
 gem 'acts-as-taggable-on'
 gem 'acts_as_votable'
 gem 'pg_search'
+gem 'impressionist'
 
 
 group :development, :test do
