@@ -14,9 +14,18 @@ class PagesController < ApplicationController
   end
 
   def pricing
-    @subscription_price =
-    @post
+    @subscription_prices = {
+      free: 0,
+      basic: 30,
+      premium: 40,
+      unlimited: 50
+    }
   end
+
+  def admin
+
+  end
+
 
   private
 

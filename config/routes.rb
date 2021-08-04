@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get 'terms', to: 'pages#terms'
   get 'map', to: 'pages#map'
+  get 'admin', to: 'pages#admin'
 
   resources :jobs do
     member do
