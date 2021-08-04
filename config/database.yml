@@ -13,7 +13,10 @@ development:
 
 production:
   <<: *default
-  host: <%= Rails.application.credentials.dig(:JOBWORKS_HOST) %>
-  username: <%= Rails.application.credentials.dig(:JOBWORKS_USERNAME) %>
-  password: <%= Rails.application.credentials.dig(:JOBWORKS_DATABASE_PASSWORD) %>
-  database: <%= Rails.application.credentials.dig(:JOBWORKS_DATABASE_NAME) %>
+  host: localhost
+  adapter: postgresql
+  encoding: utf8
+  database: appname_production
+  pool: 5
+  username: <%= ENV['JOBWORKS_DATABASE_USER'] %>
+  password: <%= ENV['JOBWORKS_DATABASE_PASSWORD'] %>
