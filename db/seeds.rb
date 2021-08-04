@@ -45,7 +45,11 @@ if res.is_a?(Net::HTTPSuccess)
         filename = File.basename(url.path)
         file = URI.open(url)
         new_job.company_logo.attach(io: file, filename: filename)
+      else
+        # image_url = URI.parse(File.read(Rails.root.join('app/assets/images/computer-desk.jpeg')))
+        new_job.images.attach(io: File.open("#{Rails.root}/app/assets/images/computer-desk.jpeg"), filename: "computer-desk")
       end
+
       new_job.save
       # new_job = user.jobs.build
       # new_job.title = job['title']
