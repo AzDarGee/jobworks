@@ -49,6 +49,25 @@
         </div>
       </div>
 
+      <div class="row p-4">
+        <div class="col-md-1">
+          <span>Views: <%= @job.impressionist_count %></span>
+        </div>
+        <div class="col-md-1">
+          <span class="parent-likes">
+            <span id="like-link">
+              <%= render 'jobs/like_link', job: @job %>
+            </span>
+            <span id="like-count" job-ib="<%= @job.id %>">
+              <%= render 'jobs/likes', job: @job %>
+            </span>
+          </span>
+        </div>
+        <div class="col">
+          <%= link_to "Apply Here", "#{@job.apply_url.to_s}", target: "_blank", class: 'btn-link show-apply-here' %>
+        </div>
+      </div>
+
       <div class="card-body">
         <div class="card-text">
           <div class="row">
@@ -62,22 +81,6 @@
               </span>
               <br>
 
-              <div class="row">
-                <div class="col">
-                  <span>Views: <%= @job.impressionist_count %></span>
-                </div>
-                <div class="col">
-                  <span class="parent-likes">
-                    <span id="like-count" job-ib="<%= @job.id %>">
-                      <%= render 'jobs/likes', job: @job %>
-                    </span>
-                    <span id="like-link">
-                      <%= render 'jobs/like_link', job: @job %>
-                    </span>
-                  </span>
-                </div>
-              </div>
-
               <h1 class="mb-0" style="display: inline"><%= @job.title %></h1> | <h5 style="display: inline"><%= @job.industry %></h5>
               <h6><%= "Remote |" if @job.remote_ok %> <%= @job.location %></h6>
               <h6><%= @job.job_type.capitalize %></h6>
@@ -85,7 +88,6 @@
               <h6><strong>Start Date: </strong><%= @job.start_date.strftime("%B %d, %Y") %></h6>
             </div>
             <div class="col-md-4">
-              <%= link_to "Apply Here", "#{@job.apply_url.to_s}", target: "_blank", class: 'btn-link show-apply-here' %>
               <div class="show-div-tag-cloud">
                 <% @job.tag_list.each do |tag| %>
                   <span class="show-tag-cloud">

@@ -38,15 +38,15 @@ if res.is_a?(Net::HTTPSuccess)
         start_date: Time.now + 14.days,
         apply_url: job['url']
       )
-      # if !job['company_logo_url'].nil?
-      #   url = URI.parse(job['company_logo_url'])
-      #   filename = File.basename(url.path)
-      #   file = URI.open(url)
-      #   new_job.company_logo.attach(io: file, filename: filename)
-      # else
-      #   file = File.open(Rails.root.join('app/assets/images/computer-desk.jpeg'))
-      #   new_job.company_logo.attach(io: file, filename: 'default-logo-jobworks')
-      # end
+      if !job['company_logo_url'].nil?
+        url = URI.parse(job['company_logo_url'])
+        filename = File.basename(url.path)
+        file = URI.open(url)
+        new_job.company_logo.attach(io: file, filename: filename)
+      else
+        file = File.open(Rails.root.join('app/assets/images/computer-desk.jpeg'))
+        new_job.company_logo.attach(io: file, filename: 'default-logo-jobworks')
+      end
       new_job.save
       # new_job = user.jobs.build
       # new_job.title = job['title']
