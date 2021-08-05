@@ -16,7 +16,7 @@ production:
   host: localhost
   adapter: postgresql
   encoding: utf8
-  database: appname_production
+  database: jobworks_production
   pool: 5
   username: <%= ENV['JOBWORKS_DATABASE_USER'] %>
   password: <%= ENV['JOBWORKS_DATABASE_PASSWORD'] %>
