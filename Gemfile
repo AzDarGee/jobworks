@@ -6,12 +6,12 @@ ruby '3.0.1'
 gem 'rails', '~> 6.1.4'
 gem 'pg'
 gem 'puma'
-gem 'sass-rails', require: false
+gem 'sass-rails'
 gem 'webpacker'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'redis'
-gem 'bootsnap', require: false
+gem 'bootsnap'
 gem 'devise'
 gem 'stripe'
 gem 'gon'
@@ -28,12 +28,7 @@ gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
-gem 'web-console'
-gem 'rack-mini-profiler'
 gem 'listen'
-gem 'spring'
-gem 'pry'
-
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
