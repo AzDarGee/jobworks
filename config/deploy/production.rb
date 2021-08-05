@@ -9,6 +9,8 @@
 
 server '165.227.44.117', user: 'deploy', roles: %w{app db web}
 
+set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/deploy/passenger_temp' }
+
 # role-based syntax
 # ==================
 
