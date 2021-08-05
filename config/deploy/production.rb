@@ -8,7 +8,6 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 server '165.227.44.117', user: 'deploy', roles: %w{app db web}
-set :bundle_without, %w{test}.join(':')
 
 # role-based syntax
 # ==================
