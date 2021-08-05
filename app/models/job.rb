@@ -42,8 +42,7 @@ class Job < ApplicationRecord
             :status,
             :num_employees,
             :salary_range,
-            :status,
-            :company_logo, :presence => true
+            :status, :presence => true
 
   # JOB CONSTANTS
   TYPES = [
