@@ -28,13 +28,24 @@ gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
-gem 'web-console'
-gem 'rack-mini-profiler'
-gem 'listen'
-gem 'spring'
-gem 'pry'
-gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
+
+group :development do
+  gem 'web-console'
+  gem 'rack-mini-profiler'
+  gem 'listen'
+  gem 'spring'
+  gem 'pry'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
