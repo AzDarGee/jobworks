@@ -44,7 +44,7 @@
         <div class="col">
           <div id="show-map"
                data-jobs="<%= @geojson.to_json %>"
-               data-mapbox-api-key="<%= Rails.application.credentials.dig(:mapbox, :public_api_key) %>">
+               data-mapbox-api-key="<%=  ENV['MAPBOX_PUBLIC_API_KEY'] %>">
           </div>
         </div>
       </div>
