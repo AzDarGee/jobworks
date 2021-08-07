@@ -16,7 +16,7 @@ set :default_env, {
 set :rails_assets_groups, :assets
 
 # If you need to touch public/images, public/javascripts, and public/stylesheets on each deploy
-set :normalize_asset_timestamps, %w{public/images public/javascripts public/stylesheets}
+set :normalize_asset_timestamps, %w{public/packs public/assets}
 set :assets_roles, [:web, :app]
 
 # Only keep the last 5 releases to save disk space
