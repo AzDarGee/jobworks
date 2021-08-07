@@ -5,7 +5,9 @@ set :repo_url, "git@github.com:AzDarGee/jobworks.git"
 set :deploy_to, "/home/deploy/#{fetch :application}"
 
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'public/packs', 'node_modules'
-set :linked_files, %w{config/master.key}
+set :linked_files, %w{config/master.key config/credentials/production.key}
+
+set :normalize_asset_timestamps, false
 
 # Only keep the last 5 releases to save disk space
 set :keep_releases, 5
