@@ -20,6 +20,7 @@ amazon:
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
   region: ca-central-1
   bucket: jobworks-board
+  root: <%= Rails.root.join("storage") %>
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
