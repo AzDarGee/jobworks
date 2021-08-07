@@ -4,7 +4,7 @@ set :repo_url, "git@github.com:AzDarGee/jobworks.git"
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
 
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'public/packs', 'node_modules'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'public/packs', 'node_modules', 'storage'
 set :linked_files, %w{config/master.key config/credentials/production.key}
 set :ssh_options, { forward_agent: true, keys: "~/.ssh/id_rsa" }
 set :default_env, {
