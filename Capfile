@@ -6,6 +6,7 @@ require "capistrano/deploy"
 require 'capistrano/rails'
 require 'capistrano/passenger'
 require 'capistrano/rbenv'
+require 'capistrano/ssh_doctor'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '3.0.1'

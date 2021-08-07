@@ -71,7 +71,7 @@
       <div class="card-body">
         <div class="card-text">
           <div class="row">
-            <div class="col-md-1">
+            <div class="col-md-1 d-flex align-items-center">
               <% if @job.company_logo.attached? %>
                 <span><%= image_tag @job.company_logo.variant(resize_to_limit: [50, 50]) %></span>
               <% end %>

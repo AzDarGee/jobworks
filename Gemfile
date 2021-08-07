@@ -39,6 +39,7 @@ group :development do
   gem 'listen'
   gem 'spring'
   gem 'pry'
+  gem 'capistrano-ssh-doctor', git: 'https://github.com/capistrano-plugins/capistrano-ssh-doctor.git'
 end
 
 group :test do
