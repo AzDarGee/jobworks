@@ -32,6 +32,6 @@ module JobWorks
       ActionText::ContentHelper.allowed_tags.add 'iframe'
     end
 
-    config.force_ssl = true
+    # config.force_ssl = true
   end
 end
