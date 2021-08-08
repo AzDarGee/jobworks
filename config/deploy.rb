@@ -11,6 +11,10 @@ set :default_env, {
   PATH: '$HOME/.npm-packages/bin/:$PATH',
   NODE_ENVIRONMENT: 'production'
 }
+set :website_url,     'jobworks.lucidlabs.studio'
+set :enable_ssl,      true
+set :ssl_certificate, '/etc/letsencrypt/live/jobworks.lucidlabs.studio/fullchain.pem'
+set :ssl_key,         '/etc/letsencrypt'
 
 # RAILS_GROUPS env value for the assets:precompile task. Default to nil.
 set :rails_assets_groups, :assets
