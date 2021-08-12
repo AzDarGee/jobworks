@@ -60,8 +60,7 @@ class JobsController < ApplicationController
     # current_user.card_expiry_year = card_exp_year
     # current_user.card_last4 = card_last4
     # current_user.save!
-    #
-    binding.pry
+
 
     respond_to do |format|
       if @job.save && (@job.user.role == "Employer")
@@ -81,20 +80,8 @@ class JobsController < ApplicationController
   end
 
   def update
-    update_params = job_params
-
-    # Update Benefits
-    benefits = update_params['benefits']
-    benefits_final = []
-    benefits.each_with_index do |benefit, index|
-      if benefit == "1"
-        benefits_final << Job::BENEFITS[index]
-      end
-    end
-    update_params['benefits'] = benefits_final
-
     respond_to do |format|
-      if @job.update(update_params)
+      if @job.update(job_params)
         format.html { redirect_to @job, notice: "Job was successfully updated." }
         format.json { render :show, status: :ok, location: @job }
       else
