@@ -16,14 +16,10 @@
           <%= link_to "All", jobs_path %>
         </span>
       <% end %>
-      <% Job.all.each_slice(50) do |jobs| %>
-        <% jobs.each do |job| %>
-          <% job.tag_list.each do |tag| %>
-            <span class="index-tag-cloud">
-              <%= link_to tag, tag_path(tag: tag) %>
-            </span>
-          <% end %>
-        <% end %>
+      <% @tags.each do |tag| %>
+        <span class="index-tag-cloud">
+          <%= link_to tag, tag_path(tag: tag.name) %>
+        </span>
       <% end %>
     </div>
   </div>

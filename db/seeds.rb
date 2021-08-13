@@ -14,12 +14,12 @@ require 'net/http'
 require 'json'
 
 # Remotiv API
-uri = URI('https://remotive.io/api/remote-jobs?limit=10')
+uri = URI('https://remotive.io/api/remote-jobs?limit=100')
 res = Net::HTTP.get_response(uri)
 jobs = JSON.parse(res.body)["jobs"]
 
 if res.is_a?(Net::HTTPSuccess)
-  user = User.find(2)
+  user = User.find(6)
   if user.is_admin
     jobs.each_with_index do |job, index|
       new_job = user.jobs.new
@@ -35,9 +35,17 @@ if res.is_a?(Net::HTTPSuccess)
       new_job.job_author = job['company_name']
       new_job.industry = job['category'].capitalize
       new_job.tags = job['tags']
-      new_job.job_type = job['job_type']
+      if job['job_type'] != ""
+        new_job.job_type = job['job_type']
+      else
+        new_job.job_type = "N/A"
+      end
       new_job.created_at = job['publication_date']
-      new_job.location = job['candidate_required_location']
+      if job['candidate_required_location'] != ""
+        new_job.location = job['candidate_required_location']
+      else
+        new_job.location = "N/A"
+      end
       new_job.remote_ok = false
       if job['candidate_required_location'] == 'Remote'
         new_job.remote_ok = true
