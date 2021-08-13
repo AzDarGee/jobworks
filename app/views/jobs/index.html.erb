@@ -1,41 +1,42 @@
 <div class="row m-2">
     <%= render partial: "shared/search_form" %>
 
-    <% @jobs.each_slice(4) do |jobs| %>
-      <div class="row">
-        <% jobs.each do |job| %>
-          <% if job.status == "Active" %>
-            <div class="col">
-            <div class="card p-0 mb-4">
-              <% if job.images.attached? %>
-                <%= link_to job do %>
-                  <%= image_tag job.images.first, class: "card-img-top" %>
-                <% end %>
-              <% end %>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h1 class="card-company p-2" style="display: inline-block;"><%= link_to job.job_author, job %></h1>
-                    <% if job.company_logo.attached? %>
-                      <%= image_tag job.company_logo.variant(resize_to_limit: [50, 50]), style: "float: left;" %>
+    <div id="jobs">
+      <% @jobs.each_slice(4) do |jobs| %>
+        <div class="row">
+          <% jobs.each do |job| %>
+            <% if job.status == "Active" %>
+              <div class="col">
+                <div class="card p-0 mb-4">
+                  <% if job.images.attached? %>
+                    <%= link_to job do %>
+                      <%= image_tag job.images.first, class: "card-img-top" %>
                     <% end %>
-                  </div>
-                </div>
+                  <% end %>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h1 class="card-company p-2" style="display: inline-block;"><%= link_to job.job_author, job %></h1>
+                        <% if job.company_logo.attached? %>
+                          <%= image_tag job.company_logo.variant(resize_to_limit: [50, 50]), style: "float: left;" %>
+                        <% end %>
+                      </div>
+                    </div>
 
-                <div class="row p-1">
-                  <div class="col">
-                    <h5 class="card-title"><%= link_to job.title, job %></h5>
-                  </div>
-                </div>
+                    <div class="row p-1">
+                      <div class="col">
+                        <h5 class="card-title"><%= link_to job.title, job %></h5>
+                      </div>
+                    </div>
 
-                <div class="row p-1">
-                  <div class="col">
-                    <h6><%= job.salary_range %></h6>
-                  </div>
-                </div>
+                    <div class="row p-1">
+                      <div class="col">
+                        <h6><%= job.salary_range %></h6>
+                      </div>
+                    </div>
 
-                <div class="row p-1">
-                  <div class="col">
+                    <div class="row p-1">
+                      <div class="col">
                     <span class="parent-likes">
                       <span>
                       <i class="far fa-eye">
@@ -49,50 +50,52 @@
                         </i>
                       </span>
                     </span>
-                  </div>
-                </div>
+                      </div>
+                    </div>
 
-                <p class="card-text">
-                  <div class="show-jobs-description">
-                    <%= job.description.to_plain_text.truncate(250) %>
-                  </div>
-                  <% job.tag_list.each do |tag| %>
+                    <p class="card-text">
+                    <div class="show-jobs-description">
+                      <%= job.description.to_plain_text.truncate(250) %>
+                    </div>
+                    <% job.tag_list.each do |tag| %>
                   <span class="show-tag-cloud float-start">
                     <%= link_to tag, tag_path(tag: tag) %>
                   </span>
-                  <% end %>
-                </p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <% if job.remote_ok %>
+                    <% end %>
+                    </p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <% if job.remote_ok %>
+                      <li class="list-group-item">
+                        <i class="fas fa-laptop-house p-2">
+                          <span>Remote</span>
+                        </i>
+                      </li>
+                    <% end %>
                     <li class="list-group-item">
-                      <i class="fas fa-laptop-house p-2">
-                        <span>Remote</span>
+                      <i class="fas fa-file-contract p-2">
+                        <%= job.job_type %>
                       </i>
                     </li>
-                <% end %>
-                <li class="list-group-item">
-                  <i class="fas fa-file-contract p-2">
-                    <%= job.job_type %>
-                  </i>
-                </li>
-                <li class="list-group-item">
-                  <i class="fas fa-map-marker-alt p-2">
-                    <%= job.location %>
-                  </i>
-                </li>
-                <li class="list-group-item">
-                  <i class="fas fa-user p-2">
-                    <%= job.user.username %>
-                  </i>
-                </li>
-              </ul>
-            </div>
-          </div>
+                    <li class="list-group-item">
+                      <i class="fas fa-map-marker-alt p-2">
+                        <%= job.location %>
+                      </i>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-user p-2">
+                        <%= job.user.username %>
+                      </i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
+    </div>
+
 </div>
 
 

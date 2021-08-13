@@ -9,7 +9,7 @@ class JobsController < ApplicationController
     elsif params[:tag]
       @jobs = Job.tagged_with(params[:tag])
     else
-      @jobs = Job.all.limit(10).order(created_at: :desc)
+      @jobs = Job.all.limit(10).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     end
     @tags = ActsAsTaggableOn::Tag.most_used(10).order("created_at DESC")
   end
