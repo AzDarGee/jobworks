@@ -5,22 +5,23 @@
     <div class="card">
       <div class="col-md-12">
         <% if @job.images.attached? %>
-          <div id="carouselExampleInterval" class="carousel slide" data-mdb-ride="carousel">
+          <div id="jobs-images" class="carousel slide" data-mdb-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active" data-mdb-interval="2000">
-                <%= image_tag @job.images.first, class: "d-block w-100" %>
-              </div>
-
               <% @job.images.each_with_index do |image, index| %>
-                <div class="carousel-item" data-mdb-interval="2000">
-                  <%= image_tag image, class: "d-block w-100" %>
-                </div>
+                <% if index == 0 %>
+                  <div class="carousel-item active" data-mdb-interval="2000">
+                    <%= image_tag @job.images.first, class: "d-block w-100" %>
+                  </div>
+                <% else %>
+                  <div class="carousel-item" data-mdb-interval="2000">
+                    <%= image_tag image, class: "d-block w-100" %>
+                  </div>
+                <% end %>
               <% end %>
-
             </div>
             <button
               class="carousel-control-prev"
-              data-mdb-target="#carouselExampleInterval"
+              data-mdb-target="#jobs-images"
               type="button"
               data-mdb-slide="prev"
             >

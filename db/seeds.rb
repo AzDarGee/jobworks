@@ -36,11 +36,15 @@ if res.is_a?(Net::HTTPSuccess)
       new_job.industry = job['category'].capitalize
       new_job.tags = job['tags']
       if job['job_type'] != ""
-        next
+        new_job.job_type = job['job_type']
+      else
+        new_job.job_type = "N/A"
       end
       new_job.created_at = job['publication_date']
       if job['candidate_required_location'] != ""
-        next
+        new_job.location = job['candidate_required_location']
+      else
+        new_job.location = "N/A"
       end
       new_job.remote_ok = false
       if job['candidate_required_location'] == 'Remote'
