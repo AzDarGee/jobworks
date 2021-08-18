@@ -5,7 +5,7 @@
     <div class="card">
       <div class="col-md-12">
         <% if @job.images.attached? %>
-          <div id="jobs-images" class="carousel slide" data-mdb-ride="carousel">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <% @job.images.each_with_index do |image, index| %>
                 <% if index == 0 %>
@@ -19,21 +19,11 @@
                 <% end %>
               <% end %>
             </div>
-            <button
-              class="carousel-control-prev"
-              data-mdb-target="#jobs-images"
-              type="button"
-              data-mdb-slide="prev"
-            >
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
-            <button
-              class="carousel-control-next"
-              data-mdb-target="#carouselExampleInterval"
-              type="button"
-              data-mdb-slide="next"
-            >
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
