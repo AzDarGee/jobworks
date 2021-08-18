@@ -106,11 +106,16 @@
                           <div class="col">
                             <h5>User Role:</h5>
                           </div>
-                          <div class="col-md-4">
-                            <%= f.radio_button :role, 'Employee' %> Employee
-                          </div>
-                          <div class="col-md-4">
+                        </div>
+                        <div class="row">
+                          <div class="col">
                             <%= f.radio_button :role, 'Employer' %> Employer
+                          </div>
+                          <div class="col">
+                            <%= f.radio_button :role, 'Expert' %> Expert
+                          </div>
+                          <div class="col">
+                            <%= f.radio_button :role, 'Creator' %> Creator
                           </div>
                         </div>
                       </div>
