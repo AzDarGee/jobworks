@@ -19,7 +19,7 @@ res = Net::HTTP.get_response(uri)
 jobs = JSON.parse(res.body)["jobs"]
 
 if res.is_a?(Net::HTTPSuccess)
-  user = User.find(6)
+  user = User.find(2)
   if user.is_admin
     jobs.each_with_index do |job, index|
       new_job = user.jobs.new
