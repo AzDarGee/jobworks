@@ -59,7 +59,7 @@ if res.is_a?(Net::HTTPSuccess)
       new_job.tag_list = job['tags']
       new_job.start_date = Time.now + 14.days
       new_job.apply_url = job['url']
-      new_job.num_employees = Job::NUM_EMPLOYEES[0]
+      new_job.num_employees = Job::NUM_EMPLOYEES[1]
       new_job.status = "Active"
       new_job.save!
 
