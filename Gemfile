@@ -29,6 +29,7 @@ gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem 'will_paginate', '~> 3.1.0'
+gem 'listen'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -37,7 +38,7 @@ end
 group :development do
   gem 'web-console'
   gem 'rack-mini-profiler'
-  gem 'listen'
+  # gem 'listen'
   gem 'spring'
   gem 'pry'
   gem 'capistrano-ssh-doctor', git: 'https://github.com/capistrano-plugins/capistrano-ssh-doctor.git'
