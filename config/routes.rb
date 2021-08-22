@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :projects
+  resources :projects do
+    member do
+      delete "delete_upload/:upload_id", action: :delete_upload, as: :delete_upload
+    end
+  end
+
   resources :companies
   root 'pages#home'
 

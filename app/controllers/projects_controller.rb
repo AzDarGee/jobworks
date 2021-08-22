@@ -1,27 +1,25 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[ show edit update destroy ]
+  before_action :set_project, only: %i[ show edit update destroy delete_upload ]
 
-  # GET /projects or /projects.json
   def index
     @projects = Project.all
+    @tags = ActsAsTaggableOn::Tag.most_used(10).order("created_at DESC")
   end
 
-  # GET /projects/1 or /projects/1.json
   def show
   end
 
-  # GET /projects/new
   def new
-    @project = Project.new
+    @user = current_user
+    @project = @user.projects.build
   end
 
-  # GET /projects/1/edit
   def edit
   end
 
-  # POST /projects or /projects.json
   def create
-    @project = Project.new(project_params)
+    @user = current_user
+    @project = @user.projects.new(project_params)
 
     respond_to do |format|
       if @project.save
@@ -34,7 +32,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /projects/1 or /projects/1.json
   def update
     respond_to do |format|
       if @project.update(project_params)
@@ -47,7 +44,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # DELETE /projects/1 or /projects/1.json
   def destroy
     @project.destroy
     respond_to do |format|
@@ -56,13 +52,17 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def delete_upload
+    attachments = ActiveStorage::Attachment.where(id: params[:upload_id])
+    attachments.map(&:purge)
+    redirect_to edit_project_path(@project), notice: 'Image deleted.'
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def project_params
       params.require(:project).permit(
         :title,
@@ -70,6 +70,8 @@ class ProjectsController < ApplicationController
         :start_date,
         :end_date,
         :search,
+        :price,
+        :location,
         :tag_list,
         images: []
       )

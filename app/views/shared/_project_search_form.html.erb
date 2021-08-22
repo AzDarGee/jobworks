@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col">
+    <%= form_with url: projects_path, method: :get do |form| %>
+      <div class="mb-4">
+        <%= form.text_field :search, autocomplete: "off", autofocus: true, placeholder: "Search Projects", class: "form-control project-search-bar" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="index-div-tag-cloud">
+      <% if Project.all.size > 0 %>
+        <span class="index-all-tag-cloud">
+          <%= link_to "All", projects_path %>
+        </span>
+      <% end %>
+      <% @tags.each do |tag| %>
+        <span class="index-tag-cloud">
+          <%= link_to tag, tag_path(tag: tag.name) %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>

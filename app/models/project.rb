@@ -14,8 +14,17 @@ class Project < ApplicationRecord
   ActsAsTaggableOn.delimiter = ' '
   ActsAsTaggableOn.force_lowercase = true
 
+  # LIKE / UNLIKE / VOTABLE
+  acts_as_votable
+
+  # Project Views / Impressions
+  is_impressionable
+
   has_many_attached :images, service: :amazon
   has_rich_text :description
+
+  geocoded_by :location
+  after_validation :geocode, if: :location_changed?
 
   belongs_to :user
 end
