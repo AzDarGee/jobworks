@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy delete_upload ]
+  before_action :authenticate_user!, except: [:index, :show]
+  respond_to :js, :html, :json
 
   def index
     @projects = Project.all
@@ -7,6 +9,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @related_projects = @project.find_related_tags
+    @geojson = build_geojson
+    impressionist(@project)
   end
 
   def new
@@ -75,5 +80,13 @@ class ProjectsController < ApplicationController
         :tag_list,
         images: []
       )
+    end
+
+    def build_geojson
+      @project_feature = [@project]
+      {
+        type: "FeatureCollection",
+        features: @project_feature.map(&:to_feature)
+      }
     end
 end

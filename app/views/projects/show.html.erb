@@ -1,4 +1,136 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<div class="row m-4">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div class="card">
+      <div class="col-md-12">
+        <% if @project.images.attached? %>
+          <div id="jobs-images" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <% @project.images.each_with_index do |image, index| %>
+                <% if index == 0 %>
+                  <div class="carousel-item active" data-mdb-interval="2000">
+                    <%= image_tag @project.images.first, class: "d-block w-100" %>
+                  </div>
+                <% else %>
+                  <div class="carousel-item" data-mdb-interval="2000">
+                    <%= image_tag image, class: "d-block w-100" %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#jobs-images" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#jobs-images" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div id="show-map"
+               data-jobs="<%= @geojson.to_json %>"
+               data-mapbox-api-key="<%= ENV['MAPBOX_PUBLIC_API_KEY'] %>">
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-4">
+        <div class="col-md-1">
+          <span>Views: <%= @project.impressionist_count %></span>
+        </div>
+        <div class="col-md-1">
+          <span class="parent-likes">
+            <span id="like-link">
+              <%= render 'jobs/like_link', job: @project %>
+            </span>
+            <span id="like-count" job-ib="<%= @project.id %>">
+              <%= render 'jobs/likes', job: @project %>
+            </span>
+          </span>
+        </div>
+
+      </div>
+
+      <div class="card-body">
+        <div class="card-text">
+          <div class="row">
+
+            <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col">
+
+                <h1 class="mb-0" style="display: inline"><%= @project.title %></h5>
+                <h6><%= @project.location %></h6>
+                <h6><strong>Start Date: </strong><%= @project.start_date.strftime("%B %d, %Y") %></h6>
+                <h6><strong>End Date: </strong><%= @project.end_date.strftime("%B %d, %Y") %></h6>
+
+                <div class="show-div-tag-cloud">
+                  <% @project.tag_list.each do |tag| %>
+                  <span class="show-tag-cloud">
+                    <%= link_to tag, tag_path(tag: tag) %>
+                  </span>
+                  <% end %>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col">
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="show-job-created">
+                Posted: <%= @project.created_at.strftime("%B %d, %Y") %>
+              </div>
+              <br>
+              <div class="show-job-created">
+                Author: <%= @project.user.username %>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <p>
+            <%= @project.description %>
+          </p>
+          <p>
+            <% if @related_projects %>
+              <% @related_projects.each do |r| %>
+              <li><%= link_to r.title, r %></li>
+            <% end %>
+          <% end %>
+          </p>
+          <div class="row">
+            <div class="col">
+              <div class="back-btn-jobs p-2 text-center">
+                <%= link_to 'Back', jobs_path, class: "btn-link back-btn-jobs" %>
+              </div>
+            </div>
+            <% if current_user && current_user.id == @project.user_id %>
+              <div class="col">
+                <div class="edit-btn-jobs p-2 text-center">
+                  <%= link_to 'Edit', edit_project_path(@project), class: "btn-link edit-btn-jobs" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-1"></div>
+</div>

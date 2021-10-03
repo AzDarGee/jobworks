@@ -139,7 +139,6 @@ class JobsController < ApplicationController
                                   images: [])
     end
 
-
     def build_geojson
       @job_feature = [@job]
       {

@@ -39,8 +39,11 @@
       <ul class="navbar-nav">
         <% if current_user %>
           <% if current_user.role == "Employer" %>
-            <li class="nav-item">
+            <li class="nav-item p-1">
               <%= link_to "+ Post Job", new_job_path, class: "nav-link post-job-btn", "aria-current" => "page" %>
+            </li>
+            <li class="nav-item p-1">
+              <%= link_to '+ Project', new_project_path, class: "nav-link post-project-btn", "aria-current" => "page" %>
             </li>
           <% end %>
           <li class="nav-item dropdown">

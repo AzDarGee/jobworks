@@ -27,4 +27,35 @@ class Project < ApplicationRecord
   after_validation :geocode, if: :location_changed?
 
   belongs_to :user
+
+  def coordinates
+    [longitude, latitude]
+  end
+
+  def to_feature
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": coordinates
+      },
+      "properties": {
+        "project_id": id,
+        "title": title,
+        "description": description,
+        "price": price,
+        "location": location,
+        "start_date": start_date,
+        "end_date": end_date,
+        "info_window": ApplicationController.new.render_to_string(
+          partial: "projects/infowindow",
+          locals: { project: self }
+        )
+      }
+    }
+  end
+
+  def most_used_tags
+    ActsAsTaggableOn::Tag.most_used(5)
+  end
 end
