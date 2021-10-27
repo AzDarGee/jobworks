@@ -1,5 +1,10 @@
 # App Setup
 
+
+# Initial Setup
+
+- Add local known_hosts file to remote server.
+
 1. Setup your environment variables:
    
    `JOBWORKS_HOST`
@@ -19,4 +24,6 @@
 `RAILS_ENV=production rails db:seed --trace`
 
 3. Deploy application: `cap production deploy`
+
+
 
