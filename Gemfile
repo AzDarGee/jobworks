@@ -15,7 +15,7 @@ gem 'bootsnap'
 gem 'devise'
 gem 'stripe'
 gem 'gon'
-gem 'aws-sdk-s3'
+gem 'aws-sdk-s3', require: false
 gem 'cocoon'
 gem 'trix'
 gem 'image_processing'
