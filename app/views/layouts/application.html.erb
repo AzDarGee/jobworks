@@ -17,6 +17,9 @@
 
     <!-- Stripe -->
     <%= tag :meta, name: "stripe-public-key", content: Rails.application.credentials.dig(:stripe, :access_key) %>
+
+    <!-- Direct Uploads URL-->
+    <%= tag.meta name: "direct-upload-url", content: rails_direct_uploads_path %>
   </head>
 
   <body>

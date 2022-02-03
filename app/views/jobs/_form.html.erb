@@ -116,6 +116,7 @@
 <!--              </div>-->
 <!--            </div>-->
 
+<!--            Images Uploads-->
             <div class="row mb-2 p-2">
               <div class="col">
                 <% if @job.images.attached? %>
@@ -136,11 +137,33 @@
               </div>
             </div>
 
-            <div class="row mb-3">
+            <!-- Uppy Images Uploads-->
+            <div class="row">
               <div class="col">
-                <output id="list"></output>
+                <div id="drag-drop-area"></div>
               </div>
             </div>
+            <div class="row mb-2 p-2" data-uppy="images[image]">
+              <div class="col">
+                <% if @job.images.attached? %>
+                  <% @job.images.each do |image| %>
+                    <%= image_tag image.variant(resize_to_limit: [200, 200]), data: { behavior: 'uppy-preview' }, class: "mb-2" %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <%= link_to "Upload", '#', data: { behavior: 'uppy-trigger' } %>
+                <%= form.label :uppy_images, class: "form-label" %>
+              </div>
+            </div>
+
+<!--            <div class="row mb-3">-->
+<!--              <div class="col">-->
+<!--                <output id="list"></output>-->
+<!--              </div>-->
+<!--            </div>-->
 
             <div class="row">
               <div class="col">
