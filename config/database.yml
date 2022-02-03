@@ -1,22 +1,18 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+#  username: <%= Rails.application.credentials.dig(:database, :username)  %>
+#  password: <%= Rails.application.credentials.dig(:database, :password)  %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   port: 5432
 
 development:
   <<: *default
-  host: localhost
-  username: postgres
-  password:
   database: jobworks-dev
 
 production:
   <<: *default
-  host: localhost
   adapter: postgresql
   encoding: utf8
   database: jobworks_production
   pool: 5
-  username: <%= ENV['JOBWORKS_DATABASE_USER'] %>
-  password: <%= ENV['JOBWORKS_DATABASE_PASSWORD'] %>
