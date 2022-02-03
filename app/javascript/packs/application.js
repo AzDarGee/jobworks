@@ -39,13 +39,7 @@ document.addEventListener('turbolinks:load', () => {
     initMapbox();
     initShowMapBox();
 
-    var uppy = new Uppy({
-        autoProceed: true,
-        allowMultipleUploads: false,
-        logger: Uppy.debugLogger
-    })
-    // uppy.use(ActiveStorageUpload, {
-    //     directUploadUrl:
-    // })
+
+
 });
 
