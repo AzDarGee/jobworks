@@ -18,7 +18,7 @@
           <h2 class="card-title"><%= action_name.capitalize %> Job</h2>
           <%= form.check_box :remote_ok %>
           <%= form.label :remote_ok, "Remote", class: "form-label" %>
-          <div class="card-text">
+          <section class="card-text">
             <div class="row">
               <% if @job.company_logo.attached? %>
                 <div class="col-md-3">
@@ -30,7 +30,7 @@
                 </div>
               <% end %>
               <div class="col">
-                <%= form.file_field :company_logo, direct_upload: true, class: "form-control job-company-logo" %>
+                <%= form.file_field :company_logo, class: "form-control job-company-logo" %>
                 <%= form.label :company_logo, "Company Logo", class: "form-label" %>
               </div>
             </div>
@@ -116,6 +116,7 @@
 <!--              </div>-->
 <!--            </div>-->
 
+<!--            Images Uploads-->
             <div class="row mb-2 p-2">
               <div class="col">
                 <% if @job.images.attached? %>
@@ -131,10 +132,12 @@
             </div>
             <div class="row">
               <div class="col">
-                <%= form.file_field :images, multiple: true, direct_upload: true, class: "form-control job-images" %>
+                <%= form.file_field :images, multiple: true, class: "form-control job-images" %>
                 <%= form.label :images, class: "form-label" %>
               </div>
             </div>
+
+            <!-- Uppy Images Uploads-->
 
             <div class="row mb-3">
               <div class="col">

@@ -12,6 +12,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+require('@uppy/core/dist/style.css')
+require('@uppy/dashboard/dist/style.css')
 
 // Import User JS
 import '../src/bootstrap'
@@ -24,7 +26,20 @@ require("trix")
 require("@rails/actiontext")
 import "../src/trix-editor-overrides"
 
+// Uppy Image Uploads
+// const Uppy = require('@uppy/core')
+// const Dashboard = require('@uppy/dashboard')
+// const ActiveStorageUpload = require('@excid3/uppy-activestorage-upload')
+//
+// require('@uppy/core/dist/style.css')
+// require('@uppy/dashboard/dist/style.css')
+
+
 document.addEventListener('turbolinks:load', () => {
     initMapbox();
     initShowMapBox();
+
+
+
 });
+

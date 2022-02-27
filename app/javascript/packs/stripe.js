@@ -74,4 +74,5 @@ document.addEventListener("turbolinks:load", function() {
         hiddenInput.setAttribute('value', token.card[field]);
         form.appendChild(hiddenInput);
     }
+
 });

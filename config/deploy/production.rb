@@ -7,7 +7,7 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-server '165.227.44.117', user: 'root', roles: %w{app db web}
+server '143.110.211.46', user: 'deploy', roles: %w{app db web}
 
 set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/deploy/passenger_temp' }
 
