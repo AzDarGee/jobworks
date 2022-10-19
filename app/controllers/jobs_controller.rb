@@ -3,6 +3,8 @@ class JobsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   respond_to :js, :html, :json
 
+#  Attach payment to all features
+
   def index
     if params[:search]
       @jobs = Job.search_job(params[:search])

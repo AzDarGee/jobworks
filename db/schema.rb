@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_22_185636) do
-
+ActiveRecord::Schema[7.0].define(version: 2021_08_22_185636) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,8 +19,8 @@ ActiveRecord::Schema.define(version: 2021_08_22_185636) do
     t.text "body"
     t.string "record_type", null: false
     t.integer "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
@@ -62,8 +61,8 @@ ActiveRecord::Schema.define(version: 2021_08_22_185636) do
     t.float "longitude"
     t.text "description"
     t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
@@ -80,8 +79,8 @@ ActiveRecord::Schema.define(version: 2021_08_22_185636) do
     t.text "message"
     t.text "referrer"
     t.text "params"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
     t.index ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
     t.index ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
@@ -102,8 +101,8 @@ ActiveRecord::Schema.define(version: 2021_08_22_185636) do
     t.string "job_author"
     t.boolean "remote_ok"
     t.text "apply_url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "user_id"
     t.float "latitude"
     t.float "longitude"
@@ -132,8 +131,8 @@ ActiveRecord::Schema.define(version: 2021_08_22_185636) do
     t.datetime "end_date"
     t.bigint "user_id"
     t.float "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text "location"
     t.float "latitude"
     t.float "longitude"
@@ -175,8 +174,8 @@ ActiveRecord::Schema.define(version: 2021_08_22_185636) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "stripe_id"
     t.string "card_brand"
     t.string "card_last4"
@@ -205,8 +204,8 @@ ActiveRecord::Schema.define(version: 2021_08_22_185636) do
     t.boolean "vote_flag"
     t.string "vote_scope"
     t.integer "vote_weight"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
     t.index ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id"
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
