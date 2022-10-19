@@ -1,9 +1,7 @@
 # App Setup
-
+Assuming an installation of Ruby3.1.0p0 & Rails  7.0.3.1 is installed with the latest postgresql. 
 
 # Initial Setup
-
-- Add local known_hosts file to remote server.
 
 1. Setup your environment variables:
    
