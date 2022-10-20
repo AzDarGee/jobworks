@@ -1,7 +1,7 @@
 # App Setup
 Assuming an installation of Ruby3.1.2 & Rails  7.0.4 is installed with the latest postgresql. 
 
-# Initial Setup
+# Initial Setup - Mac
 
 1. Setup your environment variables:
 
@@ -9,29 +9,17 @@ Assuming an installation of Ruby3.1.2 & Rails  7.0.4 is installed with the lates
    
    Set the following environment variables, ask your manager for the keys.
 
-   ```
-      `JOBWORKS_HOST`
-      `JOBWORKS_DATABASE_PASSWORD`
-      `JOBWORKS_DATABASE_NAME`
-      `JOBWORKS_USERNAME`
-      `DATABASE_URL`
-      `AWS_ACCESS_KEY`
-      `AWS_SECRET_ACCESS_KEY`
-      `STRIPE_ACCESS_KEY`
-      `STRIPE_SECRET_ACCESS_KEY`
-      `MAPBOX_PUBLIC_API_KEY`
-      `RAILS_MASTER_KEY`
-      `SECRET_KEY_BASE`
-   ```
+2. Seed database: 
 
-2. Seed database:
-`RAILS_ENV=production rails db:seed --trace`
+   Set the user you are seeding the database with `is_admin = true`
+   
+   `rails db:seed --trace`
 
 3. Deploy application: `cap production deploy`
 
 
 
-# Working in Windows 11 / WSL2
+# Initial Setup - Windows 11 / WSL2
 
 1. Install Ruby 3.1.0p0 & `bundle install` all gems
 2. `yarn install` All the frontend libraries. (Make sure to have Node installed in WSL2).
@@ -44,5 +32,38 @@ Assuming an installation of Ruby3.1.2 & Rails  7.0.4 is installed with the lates
    ps. You can stop the postgres server by the following command:
    
    `sudo service postgresql stop`
-4. 
+4. Run these commands to get the database setup and to fill it with initial data:
+
+   ```
+      rake db:setup --trace
+      rake db:migrate --trace
+   ```
+
+5. Run the rails server in one tab & the frontend webpack server in another tab. Work from a third tab.
+
+   Tab 1: `rails s`
+   
+   Tab 2: `./bin/webpack-dev-server`
+   
+   Tab 3: `rails c`
+
+   Signup on the Solos App as an Employer. In your third tab, make the user an admin within the rails console.
+
+   For example:
+   ```
+      u = User.first
+      u.is_admin = true
+      u.save!
+   ```
+6. You can now seed the database - check seeds file
+
+   `rake db:seed`
+
+
+
+   Any other questions, direct them to management.
+
+
+
+
 
