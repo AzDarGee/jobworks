@@ -9,64 +9,68 @@
 
 
 
-# require 'uri'
-# require 'net/http'
-# require 'json'
+require 'uri'
+require 'net/http'
+require 'json'
+require 'pry'
 
-# # Remotiv API
-# uri = URI('https://remotive.io/api/remote-jobs?limit=100')
-# res = Net::HTTP.get_response(uri)
-# jobs = JSON.parse(res.body)["jobs"]
+# Remotiv API
+uri = URI('https://remotive.io/api/remote-jobs?limit=100')
+res = Net::HTTP.get_response(uri)
+jobs = JSON.parse(res.body)["jobs"]
 
-# if res.is_a?(Net::HTTPSuccess)
-#   user = User.find(1)
-#   if user.is_admin
-#     jobs.each_with_index do |job, index|
-#       new_job = user.jobs.new
-#       if !job['company_logo_url'].nil?
-#         url = URI.parse(job['company_logo_url'])
-#         filename = File.basename(url.path)
-#         file = URI.open(url)
-#         new_job.company_logo.attach(io: file, filename: filename)
-#       end
-#       new_job.images.attach(io: File.open("#{Rails.root}/app/assets/images/computer-desk.jpeg"), filename: "computer-desk")
-#       new_job.title = job['title']
-#       new_job.url = job['url']
-#       new_job.job_author = job['company_name']
-#       new_job.industry = job['category'].capitalize
-#       new_job.tags = job['tags']
-#       if job['job_type'] != ""
-#         new_job.job_type = job['job_type']
-#       else
-#         new_job.job_type = "N/A"
-#       end
-#       new_job.created_at = job['publication_date']
-#       if job['candidate_required_location'] != ""
-#         new_job.location = job['candidate_required_location']
-#       else
-#         new_job.location = "N/A"
-#       end
-#       new_job.remote_ok = false
-#       if job['candidate_required_location'] == 'Remote'
-#         new_job.remote_ok = true
-#       end
-#       if !job['salary'].empty?
-#         new_job.salary_range = job['salary']
-#       else
-#         new_job.salary_range = Job::SALARY_RANGE[0]
-#       end
-#       new_job.description = job['description'].to_s
-#       new_job.tag_list = job['tags']
-#       new_job.start_date = Time.now + 14.days
-#       new_job.apply_url = job['url']
-#       new_job.num_employees = Job::NUM_EMPLOYEES[1]
-#       new_job.status = "Active"
-#       new_job.save!
+if res.is_a?(Net::HTTPSuccess)
+  user = User.find(1)
+  if user.is_admin
+    jobs.each_with_index do |job, index|
+      new_job = user.jobs.new
+      if !job['company_logo_url'].nil?
+        url = URI.parse(job['company_logo_url'])
+        filename = File.basename(url.path)
+        file = URI.open(url)
+        new_job.company_logo.attach(io: file, filename: filename)
+      end
+      new_job.images.attach(io: File.open("#{Rails.root}/app/assets/images/computer-desk.jpeg"), filename: "computer-desk")
+      new_job.title = job['title']
+      new_job.url = job['url']
+      new_job.job_author = job['company_name']
+      new_job.industry = job['category'].capitalize
 
-#       puts "#{index}: #{job['title']} : Done \n"
-#     end
-#   end
-# end
+      binding.pry
+      
+      new_job.tags = job['tags']
+      if job['job_type'] != ""
+        new_job.job_type = job['job_type']
+      else
+        new_job.job_type = "N/A"
+      end
+      new_job.created_at = job['publication_date']
+      if job['candidate_required_location'] != ""
+        new_job.location = job['candidate_required_location']
+      else
+        new_job.location = "N/A"
+      end
+      new_job.remote_ok = false
+      if job['candidate_required_location'] == 'Remote'
+        new_job.remote_ok = true
+      end
+      if !job['salary'].empty?
+        new_job.salary_range = job['salary']
+      else
+        new_job.salary_range = Job::SALARY_RANGE[0]
+      end
+      new_job.description = job['description'].to_s
+      new_job.tag_list = job['tags']
+      new_job.start_date = Time.now + 14.days
+      new_job.apply_url = job['url']
+      new_job.num_employees = Job::NUM_EMPLOYEES[1]
+      new_job.status = "Active"
+      new_job.save!
+
+      puts "#{index}: #{job['title']} : Done \n"
+    end
+  end
+end
 
 
 # Jooble API

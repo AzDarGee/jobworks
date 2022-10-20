@@ -137,10 +137,12 @@ class Job < ApplicationRecord
     "None"
   ]
 
+  # Geolocation of the jobs - For the map
   def coordinates
     [longitude, latitude]
   end
 
+  # Geolocation of the jobs - For the map
   def to_feature
     {
       "type": "Feature",
@@ -169,6 +171,6 @@ class Job < ApplicationRecord
   end
 
   def most_used_tags
-    ActsAsTaggableOn::Tag.most_used(5)
+    ActsAsTaggableOn::Tag.most_used(10)
   end
 end
