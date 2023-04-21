@@ -16,7 +16,6 @@ module.exports = function(api) {
   }
 
   return {
-    sourceType: 'unambiguous',
     presets: [
       isTestEnv && [
         '@babel/preset-env',
@@ -52,6 +51,18 @@ module.exports = function(api) {
         '@babel/plugin-proposal-object-rest-spread',
         {
           useBuiltIns: true
+        }
+      ],
+      [
+        '@babel/plugin-proposal-private-methods',
+        {
+          loose: true
+        }
+      ],
+      [
+        '@babel/plugin-proposal-private-property-in-object',
+        {
+          loose: true
         }
       ],
       [
