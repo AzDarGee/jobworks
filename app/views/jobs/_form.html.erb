@@ -109,7 +109,7 @@
               <div class="col-md-10">
                 <% Job::BENEFITS.each_with_index do |benefit, index| %>
                   <div class="benefit d-inline-block p-2">
-                    <%= form.check_box :benefits, { :multiple => true, checked: benefit, value: benefit } %>
+                    <%= form.check_box :benefits, { multiple: true, checked: form.object.benefits&.include?(benefit.to_s) }, benefit, nil %>
                     <%= form.label :benefits, benefit, class: "form-label" %>
                   </div>
                 <% end %>

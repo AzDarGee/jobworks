@@ -24,6 +24,8 @@ class JobsController < ApplicationController
   def show
     @related_jobs = @job.find_related_tags
     @geojson = build_geojson
+    
+    
     impressionist(@job)
   end
 
@@ -49,7 +51,7 @@ class JobsController < ApplicationController
     # card_last4 = params[:user][:card_last4]
     #
     # charge = Stripe::Charge.create(
-    #   :amount => 1000,
+    #   :amount => 0,
     #   :currency => "usd",
     #   :description => job_type,
     #   :statement_descriptor => job_title,
@@ -65,7 +67,7 @@ class JobsController < ApplicationController
 
 
     respond_to do |format|
-      if @job.save && (@job.user.role == "Employer")
+      if @job.save
         format.html { render :show, notice: "Your job listing was purchased successfully." }
         format.json { render :show, status: :created, location: @job }
       else
