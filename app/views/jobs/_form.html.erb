@@ -11,7 +11,7 @@
     <div class="col"></div>
   </div>
   <div class="row m-4">
-    <div class="col"></div>
+    <div class="col-md-1"></div>
     <div class="col-md-10">
       <div class="card">
         <div class="card-body">
@@ -102,21 +102,21 @@
               </div>
             </div>
 
-<!--            <div class="row">-->
-<!--              <div class="col-md-2 align-self-md-center text-center">-->
-<!--                <strong>Benefits</strong>-->
-<!--              </div>-->
-<!--              <div class="col-md-10">-->
-                <%# Job::BENEFITS.each_with_index do |benefit, index| %>
-<!--                  <div class="benefit d-inline-block p-2">-->
-                    <%#= form.check_box :benefits, { :multiple => true, checked: benefit, value: benefit } %>
-                    <%#= form.label :benefits, benefit, class: "form-label" %>
-<!--                  </div>-->
-                <%# end %>
-<!--              </div>-->
-<!--            </div>-->
+           <div class="row">
+           <div class="col-md-2 align-self-md-center text-center">
+               <strong>Benefits</strong>
+              </div>
+              <div class="col-md-10">
+                <% Job::BENEFITS.each_with_index do |benefit, index| %>
+                  <div class="benefit d-inline-block p-2">
+                    <%= form.check_box :benefits, { :multiple => true, checked: benefit, value: benefit } %>
+                    <%= form.label :benefits, benefit, class: "form-label" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
 
-<!--            Images Uploads-->
+            <!--Images Uploads-->
             <div class="row mb-2 p-2">
               <div class="col">
                 <% if @job.images.attached? %>
@@ -198,6 +198,6 @@
         </div>
       </div>
     </div>
-    <div class="col"></div>
+    <div class="col-md-1"></div>
   </div>
 <% end %>
